@@ -9,7 +9,7 @@ from ai_code_assistant.tools.interfaces import ToolSettings
 
 
 class AiTools:
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self._tools: dict[str, BaseTool] = {}
 
@@ -19,7 +19,16 @@ class AiTools:
 
     @classmethod
     def _create_tool(cls, tool_settings: ToolSettings) -> BaseTool:
-        search = GoogleSearchAPIWrapper()
+
+        match tool_settings.name:
+            case "google_search":
+                return cls._create_google_search_tool()
+            case _:
+                raise NotImplementedError(f"{tool_settings.name} is not supported.")
+
+    @classmethod
+    def _create_google_search_tool(cls) -> BaseTool:
+        search = GoogleSearchAPIWrapper()  # type: ignore[call-arg]
 
         tool = Tool(
             name="google_search",

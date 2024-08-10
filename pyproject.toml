@@ -26,6 +26,7 @@ dependencies = [
     "langchain-aws>=0.1.16",
     "langchainhub>=0.1.20",
     "types-requests>=2.32.0.20240712",
+    "mesop>=0.11.1"
 ]
 
 [project.optional-dependencies]
@@ -57,6 +58,9 @@ warn_return_any = true
 show_error_codes = true
 warn_unused_ignores = true
 
+[[tool.mypy.overrides]]
+module = "mesop.*"
+ignore_missing_imports = true
 
 [tool.black]
 target-version = ["py310"]

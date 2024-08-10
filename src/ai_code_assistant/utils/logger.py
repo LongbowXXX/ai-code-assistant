@@ -12,7 +12,7 @@ from typing import Type
 
 def setup_logger() -> None:
     Path("logs").mkdir(exist_ok=True, parents=True)
-    file_handler = logging.FileHandler("logs/app.log", encoding='utf-8')
+    file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",

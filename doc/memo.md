@@ -26,3 +26,6 @@ https://github.com/langchain-ai/langserve/blob/main/examples/agent_custom_stream
 ## Embedding
 https://ollama.com/blog/embedding-models
 
+# GUI
+## Google Mesop
+https://github.com/google/mesop

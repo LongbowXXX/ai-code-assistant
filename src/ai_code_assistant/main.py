@@ -5,7 +5,7 @@
 import asyncio
 
 from dotenv import load_dotenv
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
 from ai_code_assistant.assistant.assistant import AiAssistant
 from ai_code_assistant.assistant.interfaces import AiConfig
@@ -22,7 +22,8 @@ async def main() -> None:
         tools=[ToolSettings(name="google_search")],
     )
     assistant = AiAssistant.create(ai_config=ai_config)
-    ask_result = assistant.a_ask(HumanMessage("オバマ大統領のフルネームと経歴教えて。"))
+    assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')
+    ask_result = assistant.a_ask(HumanMessage("What is President Obama's full name and background?"))
     async for result in ask_result:
         print(result)
 

@@ -4,9 +4,9 @@
 #  http://opensource.org/licenses/mit-license.php
 import logging
 from os.path import basename
-from typing import AsyncIterator
+from typing import AsyncIterator, Optional
 
-from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage
 from langgraph.graph.graph import CompiledGraph
 from langgraph.prebuilt import create_react_agent
 
@@ -20,7 +20,7 @@ logger = logging.getLogger(basename(__name__))
 class AiAssistant:
 
     @staticmethod
-    def create(*, ai_config: AiConfig, ai_llms: AiLlms = AiLlms(), ai_tools: AiTools = AiTools()) -> 'AiAssistant':
+    def create(*, ai_config: AiConfig, ai_llms: AiLlms = AiLlms(), ai_tools: AiTools = AiTools()) -> "AiAssistant":
         llm = ai_llms.create_llm(llm_config=ai_config.chat_llm)
         tools = ai_tools.create_tools(ai_config.tools)
         agent = create_react_agent(llm, tools)
@@ -29,12 +29,23 @@ class AiAssistant:
 
     def __init__(self, agent: CompiledGraph):
         self._agent = agent
+        self._history: list[BaseMessage] = []
+
+    @property
+    def system(self) -> Optional[SystemMessage]:
+        filtered = [msg for msg in self._history if isinstance(msg, SystemMessage)]
+        return filtered[-1] if filtered else None
+
+    @system.setter
+    def system(self, system: SystemMessage) -> None:
+        # remove old system messages
+        self._history = [msg for msg in self._history if not isinstance(msg, SystemMessage)]
+        # add new system message
+        self._history.append(system)
 
     async def a_ask(self, message: HumanMessage) -> AsyncIterator[str]:
-        system = SystemMessage("あなたは猫の獣人です。語尾にニャをつけてください。")
-        stream_response = self._agent.astream_events(
-            {"messages": [system, message]}, version="v1", stream_mode="updates"
-        )
+        self._history.append(message)
+        stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
 
         # for step in app.stream({"messages": [("human", query)]}, stream_mode="updates"):
         #     print(step)
@@ -43,19 +54,12 @@ class AiAssistant:
             # logger.info(f"ask(): event={event}")
             kind = event["event"]
             if kind == "on_chain_start":
-                if (
-                        event["name"] == "agent"
-                ):  # matches `.with_config({"run_name": "Agent"})` in agent_executor
+                if event["name"] == "agent":  # matches `.with_config({"run_name": "Agent"})` in agent_executor
                     yield "\n"
-                    yield (
-                        f"Starting agent: {event['name']} "
-                        f"with input: {event['data'].get('input')}"
-                    )
+                    yield (f"Starting agent: {event['name']} " f"with input: {event['data'].get('input')}")
                     yield "\n"
             elif kind == "on_chain_end":
-                if (
-                        event["name"] == "agent"
-                ):  # matches `.with_config({"run_name": "Agent"})` in agent_executor
+                if event["name"] == "agent":  # matches `.with_config({"run_name": "Agent"})` in agent_executor
                     yield "\n"
                     yield (
                         f"Done agent: {event['name']} "
@@ -71,15 +75,9 @@ class AiAssistant:
                     yield content
             elif kind == "on_tool_start":
                 yield "\n"
-                yield (
-                    f"Starting tool: {event['name']} "
-                    f"with inputs: {event['data'].get('input')}"
-                )
+                yield f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}"
                 yield "\n"
             elif kind == "on_tool_end":
                 yield "\n"
-                yield (
-                    f"Done tool: {event['name']} "
-                    f"with output: {event['data'].get('output')}"
-                )
+                yield f"Done tool: {event['name']} " f"with output: {event['data'].get('output')}"
                 yield "\n"
