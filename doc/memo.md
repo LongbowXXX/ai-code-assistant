@@ -14,7 +14,15 @@ https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/
 ## SQLite
 https://python.langchain.com/v0.2/docs/integrations/memory/sqlite/
 
+## streaming token
+https://python.langchain.com/v0.2/docs/tutorials/agents/#streaming-tokens
+
+# LangServe
+## custom streaming
+https://github.com/langchain-ai/langserve/blob/main/examples/agent_custom_streaming/server.py
+
 
 # Ollama
 ## Embedding
 https://ollama.com/blog/embedding-models
+

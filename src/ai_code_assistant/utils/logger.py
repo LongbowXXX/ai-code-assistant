@@ -6,11 +6,13 @@ import logging
 import sys
 import types
 from os.path import basename
+from pathlib import Path
 from typing import Type
 
 
 def setup_logger() -> None:
-    file_handler = logging.FileHandler("app.log", encoding='utf-8')
+    Path("logs").mkdir(exist_ok=True, parents=True)
+    file_handler = logging.FileHandler("logs/app.log", encoding='utf-8')
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
