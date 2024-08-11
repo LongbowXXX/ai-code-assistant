@@ -23,7 +23,9 @@ async def main() -> None:
     )
     assistant = AiAssistant.create(ai_config=ai_config)
     assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')
-    ask_result = assistant.a_ask(HumanMessage("What is President Obama's full name and background?"))
+    ask_result = assistant.a_ask(
+        HumanMessage("What is President Obama's full name and background? Tell me the latest information.")
+    )
     async for result in ask_result:
         print(result)
 

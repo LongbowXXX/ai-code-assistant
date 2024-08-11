@@ -2,10 +2,15 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
-from langchain_community.utilities import GoogleSearchAPIWrapper
+import logging
+from os.path import basename
+
 from langchain_core.tools import BaseTool, Tool
+from langchain_google_community import GoogleSearchAPIWrapper
 
 from ai_code_assistant.tools.interfaces import ToolSettings
+
+logger = logging.getLogger(basename(__name__))
 
 
 class AiTools:
@@ -14,7 +19,7 @@ class AiTools:
         self._tools: dict[str, BaseTool] = {}
 
     def create_tools(self, tool_settings: list[ToolSettings]) -> list[BaseTool]:
-        print(f"Creating tool tool_settings={tool_settings}, {self._tools}")
+        logger.info(f"Creating tool tool_settings={tool_settings}, {self._tools}")
         return [self._create_tool(tool_settings) for tool_settings in tool_settings]
 
     @classmethod
@@ -28,7 +33,7 @@ class AiTools:
 
     @classmethod
     def _create_google_search_tool(cls) -> BaseTool:
-        search = GoogleSearchAPIWrapper()  # type: ignore[call-arg]
+        search = GoogleSearchAPIWrapper()
 
         tool = Tool(
             name="google_search",

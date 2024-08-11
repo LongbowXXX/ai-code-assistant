@@ -6,7 +6,7 @@ import logging
 from os.path import basename
 from typing import AsyncIterator, Optional
 
-from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage
+from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage, AIMessage
 from langgraph.graph.graph import CompiledGraph
 from langgraph.prebuilt import create_react_agent
 
@@ -47,25 +47,22 @@ class AiAssistant:
         self._history.append(message)
         stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
 
-        # for step in app.stream({"messages": [("human", query)]}, stream_mode="updates"):
-        #     print(step)
-
         async for event in stream_response:
             # logger.info(f"ask(): event={event}")
             kind = event["event"]
             if kind == "on_chain_start":
-                if event["name"] == "agent":  # matches `.with_config({"run_name": "Agent"})` in agent_executor
-                    yield "\n"
-                    yield (f"Starting agent: {event['name']} " f"with input: {event['data'].get('input')}")
-                    yield "\n"
+                if event["name"] == "agent":
+                    logger.info(f"Starting agent: {event['name']} with input: {event['data'].get('input')}")
             elif kind == "on_chain_end":
-                if event["name"] == "agent":  # matches `.with_config({"run_name": "Agent"})` in agent_executor
-                    yield "\n"
-                    yield (
-                        f"Done agent: {event['name']} "
-                        # f"with output: {event['data'].get('output')['messages'][0]['content']}"
-                    )
-                    yield "\n"
+                if event["name"] == "agent":
+                    output = event["data"].get("output")
+                    if output:
+                        ai_message: AIMessage = output["messages"][0]
+                        self._history.append(ai_message)
+                        logger.info(f"Done agent: {event['name']} with output: {ai_message.content}")
+                    else:
+                        logger.warning("Agent did not return any output")
+
             if kind == "on_chat_model_stream":
                 content = event["data"]["chunk"].content
                 if content:
@@ -74,10 +71,6 @@ class AiAssistant:
                     # So we only print non-empty content
                     yield content
             elif kind == "on_tool_start":
-                yield "\n"
-                yield f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}"
-                yield "\n"
+                logger.info(f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}")
             elif kind == "on_tool_end":
-                yield "\n"
-                yield f"Done tool: {event['name']} " f"with output: {event['data'].get('output')}"
-                yield "\n"
+                logger.info(f"Done tool: {event['name']} " f"with output: {event['data'].get('output')}")

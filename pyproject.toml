@@ -23,6 +23,7 @@ dependencies = [
     "chromadb>=0.5.5",
     "langchain-openai>=0.1.2",
     "langchain-google-genai>=1.0.8",
+    "langchain-google-community>=1.0.7",
     "langchain-aws>=0.1.16",
     "langchainhub>=0.1.20",
     "types-requests>=2.32.0.20240712",
