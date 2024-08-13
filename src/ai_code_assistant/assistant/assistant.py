@@ -6,7 +6,7 @@ import logging
 from os.path import basename
 from typing import AsyncIterator, Optional
 
-from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage, AIMessage
+from langchain_core.messages import HumanMessage, SystemMessage, BaseMessage, AIMessage, ToolMessage
 from langgraph.graph.graph import CompiledGraph
 from langgraph.prebuilt import create_react_agent
 
@@ -73,4 +73,8 @@ class AiAssistant:
             elif kind == "on_tool_start":
                 logger.info(f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}")
             elif kind == "on_tool_end":
-                logger.info(f"Done tool: {event['name']} " f"with output: {event['data'].get('output')}")
+                output = event["data"].get("output")
+                logger.info(f"Done tool: {event['name']} " f"with output: {output}")
+                if isinstance(output, ToolMessage):
+                    logger.info(f"Save tool message: {output}")
+                    self._history.append(output)

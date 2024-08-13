@@ -29,3 +29,7 @@ https://ollama.com/blog/embedding-models
 # GUI
 ## Google Mesop
 https://github.com/google/mesop
+https://google.github.io/mesop/
+https://google.github.io/mesop/demo/
+
+https://google.github.io/mesop/guides/deployment/
