@@ -19,7 +19,7 @@ async def main() -> None:
     setup_logger()
     ai_config = AiConfig(
         chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o"),
-        tools=[ToolSettings(name="google_search")],
+        tools=[ToolSettings(name="google-search")],
     )
     assistant = AiAssistant.create(ai_config=ai_config)
     assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')

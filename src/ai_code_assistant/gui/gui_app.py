@@ -9,27 +9,30 @@ from typing import Generator
 import mesop as me
 import mesop.labs as mel
 from dotenv import load_dotenv
+from mesop.labs import ChatMessage
 
-from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantState, AiAssistantViewModel
+from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantViewModel
 from ai_code_assistant.utils.logger import setup_logger
+
+load_dotenv()
+setup_logger()
 
 logger = logging.getLogger(basename(__name__))
 assistant_model = AiAssistantViewModel()
 
 
-@me.page(path="/text_to_text", title="Text I/O Example")  # type: ignore[misc]
+@me.page(path="/ai_code_assistant", title="AI Code Assistant")  # type: ignore[misc]
 def app() -> None:
-    load_dotenv()
-    setup_logger()
-    mel.text_to_text(
-        upper_case_stream,
-        title="Text I/O Example",
+    mel.chat(
+        transform,
+        title="AI Code Assistant",
+        bot_user="AI Assistant",
     )
 
 
-def upper_case_stream(s: str) -> Generator[str, None, None]:
-    assistant_state = me.state(AiAssistantState)
-    assistant_state.input = s
-    assistant_model.setup_assistant_if_needed(assistant_state)
-
-    yield from assistant_model.ask()
+def transform(sentence: str, _: list[ChatMessage]) -> Generator[str, None, None]:  # type: ignore[no-any-unimported]
+    assistant_model.setup_assistant_if_needed()
+    try:
+        yield from assistant_model.ask(sentence)
+    except StopIteration as error:
+        logger.info(f"transform(): StopIteration={error.value}")

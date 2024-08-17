@@ -58,8 +58,12 @@ class AiAssistant:
                     output = event["data"].get("output")
                     if output:
                         ai_message: AIMessage = output["messages"][0]
-                        self._history.append(ai_message)
-                        logger.info(f"Done agent: {event['name']} with output: {ai_message.content}")
+                        if "tool_calls" in ai_message.additional_kwargs:
+                            # don't save tool call messages
+                            logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
+                        else:
+                            self._history.append(ai_message)
+                            logger.info(f"Done agent: {event['name']} with output: {ai_message}")
                     else:
                         logger.warning("Agent did not return any output")
 
@@ -76,5 +80,5 @@ class AiAssistant:
                 output = event["data"].get("output")
                 logger.info(f"Done tool: {event['name']} " f"with output: {output}")
                 if isinstance(output, ToolMessage):
-                    logger.info(f"Save tool message: {output}")
-                    self._history.append(output)
+                    logger.info(f"Tool message: {output}")
+                    # don't save tool messages

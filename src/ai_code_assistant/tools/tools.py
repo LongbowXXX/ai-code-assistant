@@ -5,8 +5,8 @@
 import logging
 from os.path import basename
 
-from langchain_core.tools import BaseTool, Tool
-from langchain_google_community import GoogleSearchAPIWrapper
+from langchain_community.agent_toolkits.load_tools import load_tools
+from langchain_core.tools import BaseTool
 
 from ai_code_assistant.tools.interfaces import ToolSettings
 
@@ -26,18 +26,12 @@ class AiTools:
     def _create_tool(cls, tool_settings: ToolSettings) -> BaseTool:
 
         match tool_settings.name:
-            case "google_search":
+            case "google-search":
                 return cls._create_google_search_tool()
             case _:
                 raise NotImplementedError(f"{tool_settings.name} is not supported.")
 
     @classmethod
     def _create_google_search_tool(cls) -> BaseTool:
-        search = GoogleSearchAPIWrapper()
-
-        tool = Tool(
-            name="google_search",
-            description="Search Google for recent results.",
-            func=search.run,
-        )
-        return tool
+        tools = load_tools(["google-search"])
+        return tools[0]

@@ -5,7 +5,7 @@
 from dataclasses import dataclass
 from typing import Literal
 
-TOOL_NAME = Literal["google_search"]
+TOOL_NAME = Literal["google-search"]
 
 
 @dataclass
