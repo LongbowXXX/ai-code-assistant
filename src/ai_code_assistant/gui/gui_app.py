@@ -7,10 +7,9 @@ from os.path import basename
 from typing import Generator
 
 import mesop as me
-import mesop.labs as mel
 from dotenv import load_dotenv
-from mesop.labs import ChatMessage
 
+from ai_code_assistant.gui.chat_page import chat_ui, ChatUiMessage
 from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantViewModel
 from ai_code_assistant.utils.logger import setup_logger
 
@@ -23,14 +22,14 @@ assistant_model = AiAssistantViewModel()
 
 @me.page(path="/ai_code_assistant", title="AI Code Assistant")  # type: ignore[misc]
 def app() -> None:
-    mel.chat(
+    chat_ui(
         transform,
         title="AI Code Assistant",
         bot_user="AI Assistant",
     )
 
 
-def transform(sentence: str, _: list[ChatMessage]) -> Generator[str, None, None]:  # type: ignore[no-any-unimported]
+def transform(sentence: str, _: list[ChatUiMessage]) -> Generator[str, None, None]:
     assistant_model.setup_assistant_if_needed()
     try:
         yield from assistant_model.ask(sentence)
