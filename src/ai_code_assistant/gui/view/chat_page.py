@@ -24,7 +24,8 @@ _DEFAULT_BORDER_SIDE = me.BorderSide(width="1px", style="solid", color=me.theme_
 
 _LABEL_BUTTON = "send"
 _LABEL_BUTTON_IN_PROGRESS = "pending"
-_LABEL_INPUT = "Enter your prompt"
+_LABEL_USER_INPUT = "Enter your prompt"
+_LABEL_SYSTEM_PROMPT = "Enter your system prompt"
 
 _STYLE_APP_CONTAINER = me.Style(
     background=_COLOR_BACKGROUND,
@@ -33,7 +34,7 @@ _STYLE_APP_CONTAINER = me.Style(
     grid_template_columns="repeat(1, 1fr)",
 )
 _STYLE_TITLE = me.Style(padding=me.Padding(left=10))
-_STYLE_CHAT_BOX = me.Style(
+_STYLE_CHAT_HISTORY_BOX = me.Style(
     height="100%",
     overflow_y="scroll",
     padding=_DEFAULT_PADDING,
@@ -46,9 +47,11 @@ _STYLE_CHAT_BOX = me.Style(
         bottom=_DEFAULT_BORDER_SIDE,
     ),
 )
-_STYLE_CHAT_INPUT = me.Style(width="100%")
-_STYLE_CHAT_INPUT_BOX = me.Style(padding=me.Padding(top=30), display="flex", flex_direction="row")
-_STYLE_CHAT_BUTTON = me.Style(margin=me.Margin(top=8, left=8))
+_STYLE_CHAT_USER_INPUT = me.Style(width="100%")
+_STYLE_CHAT_SYSTEM_PROMPT = me.Style(width="100%")
+_STYLE_CHAT_USER_INPUT_BOX = me.Style(padding=me.Padding(top=30), display="flex", flex_direction="row")
+_STYLE_CHAT_SYSTEM_PROMPT_BOX = me.Style(padding=me.Padding(top=30), display="flex", flex_direction="row")
+_STYLE_CHAT_SEND_BUTTON = me.Style(margin=me.Margin(top=8, left=8))
 _STYLE_CHAT_BUBBLE_NAME = me.Style(
     font_weight="bold",
     font_size="13px",
@@ -116,6 +119,11 @@ class ChatState:
 def on_user_input_blur(e: me.InputBlurEvent) -> None:
     chat_state = me.state(ChatState)
     chat_state.user_input = e.value
+
+
+def on_system_prompt_blur(e: me.InputBlurEvent) -> None:
+    chat_state = me.state(ChatState)
+    chat_state.system_prompt = e.value
 
 
 def chat_ui(
@@ -198,7 +206,8 @@ def __chat_screen(
         with me.box(style=_make_style_chat_ui_container(bool(title))):
             if title:
                 me.text(title, type="headline-5", style=_STYLE_TITLE)
-            with me.box(style=_STYLE_CHAT_BOX):
+
+            with me.box(style=_STYLE_CHAT_HISTORY_BOX):
                 for msg in chat_state.chat_history:
                     with me.box(style=_make_style_chat_bubble_wrapper(msg.role)):
                         if msg.role == "assistant":
@@ -212,21 +221,29 @@ def __chat_screen(
                 if chat_state.in_progress:
                     with me.box(key="scroll-to", style=me.Style(height=300)):
                         pass
-
-            with me.box(style=_STYLE_CHAT_INPUT_BOX):
+            with me.box(style=_STYLE_CHAT_SYSTEM_PROMPT_BOX):
                 with me.box(style=me.Style(flex_grow=1)):
                     me.textarea(
-                        label=_LABEL_INPUT,
+                        label=_LABEL_SYSTEM_PROMPT,
+                        on_blur=on_system_prompt_blur,
+                        style=_STYLE_CHAT_SYSTEM_PROMPT,
+                        rows=3,
+                        value=chat_state.system_prompt,
+                    )
+            with me.box(style=_STYLE_CHAT_USER_INPUT_BOX):
+                with me.box(style=me.Style(flex_grow=1)):
+                    me.textarea(
+                        label=_LABEL_USER_INPUT,
                         # Workaround: update key to clear input.
                         key=f"input-{len(chat_state.chat_history)}",
                         on_blur=on_user_input_blur,
-                        style=_STYLE_CHAT_INPUT,
+                        style=_STYLE_CHAT_USER_INPUT,
                     )
                 with me.content_button(
                     color="primary",
                     type="flat",
                     disabled=chat_state.in_progress,
                     on_click=on_click_submit,
-                    style=_STYLE_CHAT_BUTTON,
+                    style=_STYLE_CHAT_SEND_BUTTON,
                 ):
                     me.icon(_LABEL_BUTTON_IN_PROGRESS if chat_state.in_progress else _LABEL_BUTTON)
