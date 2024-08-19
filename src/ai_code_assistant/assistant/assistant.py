@@ -40,8 +40,8 @@ class AiAssistant:
     def system(self, system: SystemMessage) -> None:
         # remove old system messages
         self._history = [msg for msg in self._history if not isinstance(msg, SystemMessage)]
-        # add new system message
-        self._history.append(system)
+        # add new system message to head
+        self._history.insert(0, system)
 
     async def a_ask(self, message: HumanMessage) -> AsyncIterator[str]:
         self._history.append(message)

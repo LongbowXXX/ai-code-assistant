@@ -2,16 +2,18 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
+#
+#  This software is released under the MIT License.
+#  http://opensource.org/licenses/mit-license.php
 import time
 from dataclasses import dataclass
-from typing import Callable, Generator, Literal
+from typing import Callable, Generator, Literal, Any
 
 import mesop as me
+from mesop import ClickEvent
 from mesop.component_helpers.style import ItemAlignmentValues
 
 ChatUiRole = Literal["user", "assistant"]
-
-_BOT_USER_DEFAULT = "mesop-bot"
 
 _COLOR_BACKGROUND = me.theme_var("background")
 _COLOR_CHAT_BUBBLE_YOU = me.theme_var("surface-container-low")
@@ -55,7 +57,7 @@ _STYLE_CHAT_BUBBLE_NAME = me.Style(
 _STYLE_CHAT_BUBBLE_PLAINTEXT = me.Style(margin=me.Margin.symmetric(vertical=15))
 
 
-def _make_style_chat_ui_container(has_title: bool) -> me.Style:  # type: ignore[no-any-unimported]
+def _make_style_chat_ui_container(has_title: bool) -> me.Style:
     return me.Style(
         display="grid",
         grid_template_columns="repeat(1, 1fr)",
@@ -69,8 +71,8 @@ def _make_style_chat_ui_container(has_title: bool) -> me.Style:  # type: ignore[
     )
 
 
-def _make_style_chat_bubble_wrapper(role: ChatUiRole) -> me.Style:  # type: ignore[no-any-unimported]
-    align_items: ItemAlignmentValues = "end" if role == "user" else "start"  # type: ignore[no-any-unimported]
+def _make_style_chat_bubble_wrapper(role: ChatUiRole) -> me.Style:
+    align_items: ItemAlignmentValues = "end" if role == "user" else "start"
     return me.Style(
         display="flex",
         flex_direction="column",
@@ -78,7 +80,7 @@ def _make_style_chat_bubble_wrapper(role: ChatUiRole) -> me.Style:  # type: igno
     )
 
 
-def _make_chat_bubble_style(role: ChatUiRole) -> me.Style:  # type: ignore[no-any-unimported]
+def _make_chat_bubble_style(role: ChatUiRole) -> me.Style:
     background = _COLOR_CHAT_BUBBLE_YOU if role == "user" else _COLOR_CHAT_BUBBLE_BOT
     return me.Style(
         width="80%",
@@ -105,41 +107,42 @@ class ChatUiMessage:
 
 @me.stateclass
 class ChatState:
-    input: str
-    output: list[ChatUiMessage]
+    user_input: str
+    system_prompt: str = 'You are a cat beast-man. Please add "nya" to the end of your sentences.'
+    chat_history: list[ChatUiMessage]
     in_progress: bool = False
 
 
-def on_blur(e: me.InputBlurEvent) -> None:  # type: ignore[no-any-unimported]
+def on_user_input_blur(e: me.InputBlurEvent) -> None:
     chat_state = me.state(ChatState)
-    chat_state.input = e.value
+    chat_state.user_input = e.value
 
 
 def chat_ui(
-    transform: Callable[[str, list[ChatUiMessage]], Generator[str, None, None] | str],
+    transform: Callable[[str, str, list[ChatUiMessage]], Generator[str, None, None] | str],
     *,
-    title: str | None = None,
-    bot_user: str = _BOT_USER_DEFAULT,
+    title: str,
+    bot_user: str,
 ) -> None:
     """
     Renders the chat UI component.
 
     Args:
         transform: A function that processes the user input and returns the assistant's response.
-        title: The title of the chat UI. Defaults to None.
-        bot_user: The name of the bot user. Defaults to _BOT_USER_DEFAULT.
+        title: The title of the chat UI.
+        bot_user: The name of the bot user.
     """
-    state = me.state(ChatState)
 
     def submit() -> Generator[None, None, None]:
         chat_state = me.state(ChatState)
-        if chat_state.in_progress or not chat_state.input:
+        if chat_state.in_progress or not chat_state.user_input:
             return
-        chat_input = chat_state.input
-        chat_state.input = ""
+        chat_input = chat_state.user_input
+        chat_system_prompt = chat_state.system_prompt
+        chat_state.user_input = ""
         yield
 
-        output = chat_state.output
+        output = chat_state.chat_history
         if output is None:
             output = []
         output.append(ChatUiMessage(role="user", content=chat_input))
@@ -151,10 +154,10 @@ def chat_ui(
         yield
 
         start_time = time.time()
-        output_message = transform(chat_input, chat_state.output)
+        output_message = transform(chat_input, chat_system_prompt, chat_state.chat_history)
         assistant_message = ChatUiMessage(role="assistant")
         output.append(assistant_message)
-        chat_state.output = output
+        chat_state.chat_history = output
 
         for content in output_message:
             assistant_message.content += content
@@ -162,30 +165,41 @@ def chat_ui(
                 start_time = time.time()
                 yield
         chat_state.in_progress = False
-        me.focus_component(key=f"input-{len(chat_state.output)}")
+        me.focus_component(key=f"input-{len(chat_state.chat_history)}")
         yield
 
-    def on_click_submit(_: me.ClickEvent) -> Generator[None, None, None]:  # type: ignore[no-any-unimported]
+    def on_click_submit(_: me.ClickEvent) -> Generator[None, None, None]:
         yield from submit()
 
-    def toggle_theme(_: me.ClickEvent) -> None:  # type: ignore[no-any-unimported]
+    def toggle_theme(_: me.ClickEvent) -> None:
         if me.theme_brightness() == "light":
             me.set_theme_mode("dark")
         else:
             me.set_theme_mode("light")
 
+    __chat_screen(title=title, bot_user=bot_user, on_click_theme=toggle_theme, on_click_submit=on_click_submit)
+
+
+def __chat_screen(
+    *,
+    title: str,
+    bot_user: str,
+    on_click_theme: Callable[[ClickEvent], Any],
+    on_click_submit: Callable[[ClickEvent], Any],
+) -> None:
+    chat_state = me.state(ChatState)
     with me.box(style=_STYLE_APP_CONTAINER):
         with me.content_button(
             type="icon",
             style=me.Style(position="absolute", right=4, top=8),
-            on_click=toggle_theme,
+            on_click=on_click_theme,
         ):
             me.icon("light_mode" if me.theme_brightness() == "dark" else "dark_mode")
         with me.box(style=_make_style_chat_ui_container(bool(title))):
             if title:
                 me.text(title, type="headline-5", style=_STYLE_TITLE)
             with me.box(style=_STYLE_CHAT_BOX):
-                for msg in state.output:
+                for msg in chat_state.chat_history:
                     with me.box(style=_make_style_chat_bubble_wrapper(msg.role)):
                         if msg.role == "assistant":
                             me.markdown(bot_user, style=_STYLE_CHAT_BUBBLE_NAME)
@@ -195,7 +209,7 @@ def chat_ui(
                             else:
                                 me.markdown(msg.content)
 
-                if state.in_progress:
+                if chat_state.in_progress:
                     with me.box(key="scroll-to", style=me.Style(height=300)):
                         pass
 
@@ -204,15 +218,15 @@ def chat_ui(
                     me.textarea(
                         label=_LABEL_INPUT,
                         # Workaround: update key to clear input.
-                        key=f"input-{len(state.output)}",
-                        on_blur=on_blur,
+                        key=f"input-{len(chat_state.chat_history)}",
+                        on_blur=on_user_input_blur,
                         style=_STYLE_CHAT_INPUT,
                     )
                 with me.content_button(
                     color="primary",
                     type="flat",
-                    disabled=state.in_progress,
+                    disabled=chat_state.in_progress,
                     on_click=on_click_submit,
                     style=_STYLE_CHAT_BUTTON,
                 ):
-                    me.icon(_LABEL_BUTTON_IN_PROGRESS if state.in_progress else _LABEL_BUTTON)
+                    me.icon(_LABEL_BUTTON_IN_PROGRESS if chat_state.in_progress else _LABEL_BUTTON)

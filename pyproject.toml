@@ -60,8 +60,9 @@ show_error_codes = true
 warn_unused_ignores = true
 
 [[tool.mypy.overrides]]
-module = "mesop.*"
+module = ["mesop.*", "ai_code_assistant.gui.view.*"]
 ignore_missing_imports = true
+disallow_any_unimported = false
 
 [tool.black]
 target-version = ["py310"]

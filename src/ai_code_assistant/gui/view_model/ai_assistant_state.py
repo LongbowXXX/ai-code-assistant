@@ -22,8 +22,9 @@ class AiAssistantViewModel:
     ) -> None:
         super().__init__()
 
-    def setup_assistant_if_needed(self) -> None:
+    def setup_assistant_if_needed(self, system_prompt: str) -> None:
         if self._ai_assistant:
+            self._ai_assistant.system = SystemMessage(system_prompt)
             return
 
         ai_config = AiConfig(
@@ -31,7 +32,7 @@ class AiAssistantViewModel:
             tools=[ToolSettings(name="google-search")],
         )
         assistant = AiAssistant.create(ai_config=ai_config)
-        assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')
+        assistant.system = SystemMessage(system_prompt)
         self._ai_assistant = assistant
         self._loop = asyncio.new_event_loop()
 

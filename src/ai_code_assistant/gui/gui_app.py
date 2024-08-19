@@ -9,7 +9,7 @@ from typing import Generator
 import mesop as me
 from dotenv import load_dotenv
 
-from ai_code_assistant.gui.chat_page import chat_ui, ChatUiMessage
+from ai_code_assistant.gui.view.chat_page import chat_ui, ChatUiMessage
 from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantViewModel
 from ai_code_assistant.utils.logger import setup_logger
 
@@ -29,8 +29,8 @@ def app() -> None:
     )
 
 
-def transform(sentence: str, _: list[ChatUiMessage]) -> Generator[str, None, None]:
-    assistant_model.setup_assistant_if_needed()
+def transform(sentence: str, system_prompt: str, _: list[ChatUiMessage]) -> Generator[str, None, None]:
+    assistant_model.setup_assistant_if_needed(system_prompt)
     try:
         yield from assistant_model.ask(sentence)
     except StopIteration as error:
