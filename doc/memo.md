@@ -7,9 +7,15 @@ https://python.langchain.com/v0.2/docs/tutorials/agents/
 
 ## Git
 https://python.langchain.com/v0.2/docs/integrations/document_loaders/git/
+https://python.langchain.com/v0.2/docs/integrations/document_loaders/github/
+personal access token
+https://github.com/settings/tokens?type=beta
+https://python.langchain.com/v0.2/docs/integrations/tools/github/
+
 
 ## VectorStore
 https://python.langchain.com/v0.2/docs/integrations/vectorstores/chroma/
+https://python.langchain.com/v0.2/docs/how_to/vectorstore_retriever/
 
 ## SQLite
 https://python.langchain.com/v0.2/docs/integrations/memory/sqlite/
@@ -33,3 +39,5 @@ https://google.github.io/mesop/
 https://google.github.io/mesop/demo/
 
 https://google.github.io/mesop/guides/deployment/
+
+

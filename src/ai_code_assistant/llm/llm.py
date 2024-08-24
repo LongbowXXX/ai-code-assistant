@@ -12,7 +12,7 @@ class AiLlms:
     def create_llm(self, llm_config: LlmConfig) -> BaseChatModel:
         match llm_config.llm_provider:
             case "openai":
-                model = ChatOpenAI(model="gpt-4o")
+                model = ChatOpenAI(model=llm_config.llm_model)
             case "amazon_bedrock":
                 raise NotImplementedError("Amazon Bedrock is not supported.")
             case _:

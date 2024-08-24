@@ -18,7 +18,7 @@ async def main() -> None:
     load_dotenv()
     setup_logger()
     ai_config = AiConfig(
-        chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o"),
+        chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
         tools=[ToolSettings(name="google-search")],
     )
     assistant = AiAssistant.create(ai_config=ai_config)
