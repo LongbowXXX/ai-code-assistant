@@ -21,9 +21,9 @@ async def main() -> None:
         chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
         tools=[ToolSettings(name="google-search")],
     )
-    assistant = AiAssistant.create(ai_config=ai_config)
+    assistant = await AiAssistant.create_async(ai_config=ai_config)
     assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')
-    ask_result = assistant.a_ask(
+    ask_result = assistant.ask_async(
         HumanMessage("What is President Obama's full name and background? Tell me the latest information.")
     )
     async for result in ask_result:

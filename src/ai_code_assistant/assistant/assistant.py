@@ -20,9 +20,11 @@ logger = logging.getLogger(basename(__name__))
 class AiAssistant:
 
     @staticmethod
-    def create(*, ai_config: AiConfig, ai_llms: AiLlms = AiLlms(), ai_tools: AiTools = AiTools()) -> "AiAssistant":
+    async def create_async(
+        *, ai_config: AiConfig, ai_llms: AiLlms = AiLlms(), ai_tools: AiTools = AiTools()
+    ) -> "AiAssistant":
         llm = ai_llms.create_llm(llm_config=ai_config.chat_llm)
-        tools = ai_tools.create_tools(ai_config.tools)
+        tools = await ai_tools.create_tools_async(ai_config.tools)
         agent = create_react_agent(llm, tools)
 
         return AiAssistant(agent)
@@ -43,7 +45,7 @@ class AiAssistant:
         # add new system message to head
         self._history.insert(0, system)
 
-    async def a_ask(self, message: HumanMessage) -> AsyncIterator[str]:
+    async def ask_async(self, message: HumanMessage) -> AsyncIterator[str]:
         self._history.append(message)
         stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
 

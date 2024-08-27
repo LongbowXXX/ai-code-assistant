@@ -31,7 +31,7 @@ class AiAssistantViewModel:
             chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
             tools=[ToolSettings(name="google-search")],
         )
-        assistant = AiAssistant.create(ai_config=ai_config)
+        assistant = asyncio.run(AiAssistant.create_async(ai_config=ai_config))
         assistant.system = SystemMessage(system_prompt)
         self._ai_assistant = assistant
         self._loop = asyncio.new_event_loop()
@@ -46,7 +46,7 @@ class AiAssistantViewModel:
             pass
 
     def __sync_ask(self, message: HumanMessage) -> Generator[str, None, str]:
-        gen = self.__a_ask(message)
+        gen = self.__ask_async(message)
         all_str = ""
         while True:
             try:
@@ -58,8 +58,8 @@ class AiAssistantViewModel:
                 break
         return all_str
 
-    async def __a_ask(self, message: HumanMessage) -> AsyncGenerator[str, None]:
+    async def __ask_async(self, message: HumanMessage) -> AsyncGenerator[str, None]:
         assert self._ai_assistant
-        a_result = self._ai_assistant.a_ask(message)
+        a_result = self._ai_assistant.ask_async(message)
         async for result in a_result:
             yield result

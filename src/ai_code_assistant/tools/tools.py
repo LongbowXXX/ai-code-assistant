@@ -8,7 +8,8 @@ from os.path import basename
 from langchain_community.agent_toolkits.load_tools import load_tools
 from langchain_core.tools import BaseTool
 
-from ai_code_assistant.tools.interfaces import ToolSettings
+from ai_code_assistant.tools.interfaces import ToolSettings, RetrieverToolSettings
+from ai_code_assistant.tools.retriever_tool import RetrieverTool
 
 logger = logging.getLogger(basename(__name__))
 
@@ -18,12 +19,14 @@ class AiTools:
         super().__init__()
         self._tools: dict[str, BaseTool] = {}
 
-    def create_tools(self, tool_settings: list[ToolSettings]) -> list[BaseTool]:
+    async def create_tools_async(self, tool_settings: list[ToolSettings]) -> list[BaseTool]:
         logger.info(f"Creating tool tool_settings={tool_settings}, {self._tools}")
-        return [self._create_tool(tool_settings) for tool_settings in tool_settings]
+        return [await self._create_tool_async(tool_settings) for tool_settings in tool_settings]
 
     @classmethod
-    def _create_tool(cls, tool_settings: ToolSettings) -> BaseTool:
+    async def _create_tool_async(cls, tool_settings: ToolSettings) -> BaseTool:
+        if isinstance(tool_settings, RetrieverToolSettings):
+            return await RetrieverTool.create_tool_async(tool_settings)
 
         match tool_settings.name:
             case "google-search":
