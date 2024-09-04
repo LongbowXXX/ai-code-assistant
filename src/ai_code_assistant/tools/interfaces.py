@@ -2,31 +2,36 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
-from dataclasses import dataclass
-from typing import Literal
+from enum import Enum
+
+from pydantic import BaseModel
 
 
-@dataclass
-class ToolSettings:
-    name: str
+class ToolType(str, Enum):
+    RETRIEVER = "retriever"
+    BUILTIN = "builtin"
 
 
-@dataclass
-class DocumentSource:
-    type: Literal["git"]
+class DocumentSourceType(str, Enum):
+    GIT = "git"
 
 
-@dataclass
-class GitDocumentSource(DocumentSource):
-    repo_path: str
-    clone_url: str | None
+class DocumentSourceSettings(BaseModel):
+    type: DocumentSourceType
+
+
+class GitDocumentSourceSettings(DocumentSourceSettings):
+    clone_url: str
     branch: str
 
 
-@dataclass
+class ToolSettings(BaseModel):
+    name: str
+    type: ToolType
+    enabled: bool
+
+
 class RetrieverToolSettings(ToolSettings):
     description: str
-    collection_name: str
-    persist_directory: str
     embedding_model: str
-    source: DocumentSource
+    source: DocumentSourceSettings

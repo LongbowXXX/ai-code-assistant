@@ -9,8 +9,9 @@ from langchain_core.messages import HumanMessage, SystemMessage
 
 from ai_code_assistant.assistant.assistant import AiAssistant
 from ai_code_assistant.assistant.interfaces import AiConfig
+from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.llm.interfaces import LlmConfig
-from ai_code_assistant.tools.interfaces import ToolSettings
+from ai_code_assistant.tools.interfaces import ToolSettings, ToolType
 from ai_code_assistant.utils.logger import setup_logger
 
 
@@ -19,9 +20,9 @@ async def main() -> None:
     setup_logger()
     ai_config = AiConfig(
         chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
-        tools=[ToolSettings(name="google-search")],
+        tools=[ToolSettings(name="google-search", type=ToolType.BUILTIN, enabled=True)],
     )
-    assistant = await AiAssistant.create_async(ai_config=ai_config)
+    assistant = await AiAssistant.create_async(ai_config=ai_config, app_context=AppContext())
     assistant.system = SystemMessage('You are a cat beast-man. Please add "nya" to the end of your sentences.')
     ask_result = assistant.ask_async(
         HumanMessage("What is President Obama's full name and background? Tell me the latest information.")

@@ -11,6 +11,7 @@ from langgraph.graph.graph import CompiledGraph
 from langgraph.prebuilt import create_react_agent
 
 from ai_code_assistant.assistant.interfaces import AiConfig
+from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.llm.llm import AiLlms
 from ai_code_assistant.tools.tools import AiTools
 
@@ -21,10 +22,14 @@ class AiAssistant:
 
     @staticmethod
     async def create_async(
-        *, ai_config: AiConfig, ai_llms: AiLlms = AiLlms(), ai_tools: AiTools = AiTools()
+        *,
+        ai_config: AiConfig,
+        ai_llms: AiLlms = AiLlms(),
+        ai_tools: AiTools = AiTools(),
+        app_context: AppContext,
     ) -> "AiAssistant":
         llm = ai_llms.create_llm(llm_config=ai_config.chat_llm)
-        tools = await ai_tools.create_tools_async(ai_config.tools)
+        tools = await ai_tools.load_tools_async(ai_config.tools, app_context)
         agent = create_react_agent(llm, tools)
 
         return AiAssistant(agent)
