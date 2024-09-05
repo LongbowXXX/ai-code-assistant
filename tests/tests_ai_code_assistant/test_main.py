@@ -54,6 +54,6 @@ def test_sandbox() -> None:
     prompt = hub.pull("hwchase17/openai-tools-agent")
     llm = ChatOpenAI(temperature=0, model="gpt-4o-2024-08-06", verbose=True)
     agent = create_openai_tools_agent(llm, [tool], prompt)
-    agent_executor = AgentExecutor(agent=agent, tools=[tool], verbose=True)  # type: ignore[arg-type]
+    agent_executor = AgentExecutor(agent=agent, tools=[tool], verbose=True)
     result = agent_executor.invoke({"input": "Please explain main.py in ai-code-assistant."})
     print(f"output={result['output']}")
