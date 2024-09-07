@@ -23,3 +23,8 @@ $ flake8 --statistics
 ```
 $ black .
 ```
+
+## pytest
+```
+$ pytest --html=build/reports/test/result/report.html --cov --cov-report=html:build/reports/test/coverage --cov-report=term
+```
