@@ -14,6 +14,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from ai_code_assistant.common.app_context import AppContext
+from ai_code_assistant.common.path import remove_dir_contents
 from ai_code_assistant.tools.interfaces import (
     RetrieverToolSettings,
     GitDocumentSourceSettings,
@@ -55,6 +56,14 @@ class RetrieverTool:
             tool_settings.description,
         )
         return tool
+
+    @classmethod
+    async def remove_tool_async(cls, app_context: AppContext, tool_settings: RetrieverToolSettings) -> None:
+        logger.info(f"Remove tool tool_settings={tool_settings}")
+        persistent_directory = app_context.db_dir / tool_settings.name
+        remove_dir_contents(persistent_directory)
+        repository_path = app_context.repository_dir / tool_settings.name
+        remove_dir_contents(repository_path)
 
     @classmethod
     async def __load_git_documents_async(

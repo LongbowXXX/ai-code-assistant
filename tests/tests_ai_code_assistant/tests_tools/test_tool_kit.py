@@ -6,19 +6,19 @@ import json
 from pathlib import Path
 
 import pytest
-from _pytest.legacypath import TempdirFactory
 
+from pytest import TempPathFactory
 from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.tools.interfaces import RetrieverToolSettings, GitDocumentSourceSettings, ToolType
 from ai_code_assistant.tools.tool_kit import ToolKit
 
 
 @pytest.fixture(scope="session")
-def app_context(tmpdir_factory: TempdirFactory) -> AppContext:  # type: ignore[no-any-unimported, unused-ignore]
-    tool_dir_path = tmpdir_factory.mktemp("tools")
-    data_dir = tmpdir_factory.mktemp("data")
-    db_dir = tmpdir_factory.mktemp("db")
-    repository_dir = tmpdir_factory.mktemp("repository")
+def app_context(tmp_path_factory: TempPathFactory) -> AppContext:
+    tool_dir_path = tmp_path_factory.mktemp("tools")
+    data_dir = tmp_path_factory.mktemp("data")
+    db_dir = tmp_path_factory.mktemp("db")
+    repository_dir = tmp_path_factory.mktemp("repository")
 
     return AppContext(
         data_dir=Path(str(data_dir)),
@@ -29,7 +29,7 @@ def app_context(tmpdir_factory: TempdirFactory) -> AppContext:  # type: ignore[n
 
 
 @pytest.mark.asyncio
-async def test_save_tool_setting(app_context: AppContext) -> None:  # type: ignore[no-any-unimported, unused-ignore]
+async def test_save_tool_setting(app_context: AppContext) -> None:
     toolkit = ToolKit()
     await toolkit.save_tool_setting(
         app_context,
