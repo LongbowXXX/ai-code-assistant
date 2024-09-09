@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 
 import pytest
-
 from pytest import TempPathFactory
+
 from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.tools.interfaces import RetrieverToolSettings, GitDocumentSourceSettings, ToolType
 from ai_code_assistant.tools.tool_kit import ToolKit
@@ -31,6 +31,9 @@ def app_context(tmp_path_factory: TempPathFactory) -> AppContext:
 @pytest.mark.asyncio
 async def test_save_tool_setting(app_context: AppContext) -> None:
     toolkit = ToolKit()
+    tools0 = await toolkit.load_tool_settings(app_context=app_context)
+    assert len(tools0) == 0
+
     await toolkit.save_tool_setting(
         app_context,
         RetrieverToolSettings(
@@ -60,3 +63,13 @@ async def test_save_tool_setting(app_context: AppContext) -> None:
     assert setting["source"]["type"] == "git"
     assert setting["source"]["clone_url"] == "clone_url"
     assert setting["source"]["branch"] == "branch"
+
+    tools1 = await toolkit.load_tool_settings(app_context=app_context)
+    assert len(tools1) == 1
+    assert tools1[0].name == "tool1"
+
+    await toolkit.remove_tool_setting(app_context=app_context, tool_name="tool1")
+    assert app_context.tools_dir_path.joinpath("tool1").joinpath("setting.json").exists() is False
+
+    tools2 = await toolkit.load_tool_settings(app_context=app_context)
+    assert len(tools2) == 0
