@@ -9,8 +9,8 @@ from langchain_core.messages import SystemMessage, HumanMessage
 
 from ai_code_assistant.assistant.assistant import AiAssistant
 from ai_code_assistant.assistant.interfaces import AiConfig
-from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.llm.interfaces import LlmConfig
+from ai_code_assistant.tools.ai_tools import AiTools
 from ai_code_assistant.tools.interfaces import ToolSettings, ToolType
 
 
@@ -27,15 +27,22 @@ class AiAssistantViewModel:
         if self._ai_assistant:
             self._ai_assistant.system = SystemMessage(system_prompt)
             return
-
-        ai_config = AiConfig(
-            chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
-            tools=[ToolSettings(name="google-search", type=ToolType.BUILTIN, enabled=True)],
-        )
-        assistant = asyncio.run(AiAssistant.create_async(ai_config=ai_config, app_context=AppContext()))
+        assistant = asyncio.run(self.__setup_async())
         assistant.system = SystemMessage(system_prompt)
         self._ai_assistant = assistant
         self._loop = asyncio.new_event_loop()
+
+    @classmethod
+    async def __setup_async(cls) -> AiAssistant:
+        ai_tools = AiTools()
+        await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
+        tools = await ai_tools.load_tools_async()
+
+        ai_config = AiConfig(
+            chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
+            tools=tools,
+        )
+        return await AiAssistant.create_async(ai_config=ai_config)
 
     def ask(self, sentence: str) -> Generator[str, None, None]:
         new_message = HumanMessage(sentence)
