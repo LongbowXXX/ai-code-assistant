@@ -21,7 +21,7 @@ _COLOR_CHAT_BUBBLE_BOT = me.theme_var("secondary-container")
 
 _DEFAULT_PADDING = me.Padding.all(20)
 _DEFAULT_BORDER_SIDE = me.BorderSide(width="1px", style="solid", color=me.theme_var("secondary-fixed"))
-
+_DEFAULT_BORDER = me.Border.all(me.BorderSide(color="#e0e0e0", width=1, style="solid"))
 _LABEL_BUTTON = "send"
 _LABEL_BUTTON_IN_PROGRESS = "pending"
 _LABEL_USER_INPUT = "Enter your prompt"
@@ -112,6 +112,7 @@ class ChatUiMessage:
 class ChatState:
     user_input: str
     system_prompt: str = 'You are a cat beast-man. Please add "nya" to the end of your sentences.'
+    system_prompt_tab: bool = False
     chat_history: list[ChatUiMessage]
     in_progress: bool = False
 
@@ -221,15 +222,16 @@ def __chat_screen(
                 if chat_state.in_progress:
                     with me.box(key="scroll-to", style=me.Style(height=300)):
                         pass
-            with me.box(style=_STYLE_CHAT_SYSTEM_PROMPT_BOX):
-                with me.box(style=me.Style(flex_grow=1)):
-                    me.textarea(
-                        label=_LABEL_SYSTEM_PROMPT,
-                        on_blur=on_system_prompt_blur,
-                        style=_STYLE_CHAT_SYSTEM_PROMPT,
-                        rows=3,
-                        value=chat_state.system_prompt,
-                    )
+            with tab_box(header="System Prompt", key="system_prompt_tab"):
+                with me.box(style=_STYLE_CHAT_SYSTEM_PROMPT_BOX):
+                    with me.box(style=me.Style(flex_grow=1)):
+                        me.textarea(
+                            label=_LABEL_SYSTEM_PROMPT,
+                            on_blur=on_system_prompt_blur,
+                            style=_STYLE_CHAT_SYSTEM_PROMPT,
+                            rows=3,
+                            value=chat_state.system_prompt,
+                        )
             with me.box(style=_STYLE_CHAT_USER_INPUT_BOX):
                 with me.box(style=me.Style(flex_grow=1)):
                     me.textarea(
@@ -247,3 +249,38 @@ def __chat_screen(
                     style=_STYLE_CHAT_SEND_BUTTON,
                 ):
                     me.icon(_LABEL_BUTTON_IN_PROGRESS if chat_state.in_progress else _LABEL_BUTTON)
+
+
+@me.content_component  # type: ignore[misc]
+def tab_box(*, header: str, key: str) -> None:
+    """Collapsible tab box"""
+    state = me.state(ChatState)
+    tab_open = getattr(state, key)
+    with me.box(style=me.Style(width="100%", margin=me.Margin(bottom=20))):
+        # Tab Header
+        with me.box(
+            key=key,
+            on_click=on_click_tab_header,
+            style=me.Style(padding=_DEFAULT_PADDING, border=_DEFAULT_BORDER),
+        ):
+            with me.box(style=me.Style(display="flex")):
+                me.icon(icon="keyboard_arrow_down" if tab_open else "keyboard_arrow_right")
+                me.text(
+                    header,
+                    style=me.Style(line_height="24px", margin=me.Margin(left=5), font_weight="bold"),
+                )
+        # Tab Content
+        with me.box(
+            style=me.Style(
+                padding=_DEFAULT_PADDING,
+                border=_DEFAULT_BORDER,
+                display="block" if tab_open else "none",
+            )
+        ):
+            me.slot()
+
+
+def on_click_tab_header(e: me.ClickEvent) -> None:
+    """Open and closes tab content."""
+    state = me.state(ChatState)
+    setattr(state, e.key, not getattr(state, e.key))
