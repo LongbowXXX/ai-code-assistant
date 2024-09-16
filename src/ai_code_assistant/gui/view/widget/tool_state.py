@@ -5,10 +5,10 @@
 
 import mesop as me
 
+
 @me.stateclass
 class ToolState:
-    modal_open: bool = False
+    modal_shown: bool = False
     rewrite: str = ""
     preview_original: str = ""
     preview_rewrite: str = ""
-

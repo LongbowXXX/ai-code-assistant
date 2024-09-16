@@ -9,7 +9,8 @@ from typing import Generator
 import mesop as me
 from dotenv import load_dotenv
 
-from ai_code_assistant.gui.view.chat_page import chat_ui, ChatUiMessage
+from ai_code_assistant.gui.view.chat_page import chat_ui
+from ai_code_assistant.gui.view.chat_state import ChatUiMessage
 from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantViewModel
 from ai_code_assistant.utils.logger import setup_logger
 

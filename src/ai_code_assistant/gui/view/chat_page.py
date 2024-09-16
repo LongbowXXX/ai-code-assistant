@@ -14,7 +14,7 @@ from mesop.component_helpers.style import ItemAlignmentValues
 
 from ai_code_assistant.gui.view.chat_state import ChatUiRole, ChatState, ChatUiMessage
 from ai_code_assistant.gui.view.page_header import page_header
-from ai_code_assistant.gui.view.widget.tool_widget import tool_widget, is_tool_widget_open
+from ai_code_assistant.gui.view.widget.tool_widget import tool_widget, is_tool_widget_shown
 
 _COLOR_BACKGROUND = me.theme_var("background")
 _COLOR_CHAT_BUBBLE_YOU = me.theme_var("surface-container-low")
@@ -191,9 +191,10 @@ def __chat_screen(
         ):
             me.icon("light_mode" if me.theme_brightness() == "dark" else "dark_mode")
 
-        if is_tool_widget_open():
+        if is_tool_widget_shown():
             with tool_widget():
                 me.slot()
+            return
 
         with me.box(style=_make_style_chat_ui_container(bool(title))):
 

@@ -34,24 +34,24 @@ _STYLE_PREVIEW_REWRITE = me.Style(background=_COLOR_CHAT_BUBBLE_EDITED, padding=
 
 def show_tool_widget() -> None:
     state = me.state(ToolState)
-    state.modal_open = True
+    state.modal_shown = True
 
 
 def hide_tool_widget() -> None:
     state = me.state(ToolState)
-    state.modal_open = False
+    state.modal_shown = False
 
 
-def is_tool_widget_open() -> bool:
+def is_tool_widget_shown() -> bool:
     state = me.state(ToolState)
-    return state.modal_open
+    return True if state.modal_shown else False
 
 
 @me.content_component  # type: ignore[misc]
 def tool_widget() -> None:
     state = me.state(ToolState)
     # Modal
-    with me.box(style=_make_modal_background_style(state.modal_open)):
+    with me.box(style=_make_modal_background_style(state.modal_shown)):
         with me.box(style=_STYLE_MODAL_CONTAINER):
             with me.box(style=_STYLE_MODAL_CONTENT):
                 me.textarea(
@@ -88,13 +88,13 @@ def on_rewrite_input(_: me.InputEvent) -> None:
 def on_click_submit_rewrite(_: me.ClickEvent) -> None:
     """Submits rewrite message."""
     state = me.state(ToolState)
-    state.modal_open = False
+    state.modal_shown = False
 
 
 def on_click_cancel_rewrite(_: me.ClickEvent) -> None:
     """Hides rewrite modal."""
     state = me.state(ToolState)
-    state.modal_open = False
+    state.modal_shown = False
 
 
 def _make_modal_background_style(modal_open: bool) -> me.Style:
