@@ -6,14 +6,15 @@
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
 import time
-from dataclasses import dataclass
-from typing import Callable, Generator, Literal, Any
+from typing import Callable, Generator, Any
 
 import mesop as me
 from mesop import ClickEvent
 from mesop.component_helpers.style import ItemAlignmentValues
 
-ChatUiRole = Literal["user", "assistant"]
+from ai_code_assistant.gui.view.chat_state import ChatUiRole, ChatState, ChatUiMessage
+from ai_code_assistant.gui.view.page_header import page_header
+from ai_code_assistant.gui.view.widget.tool_widget import tool_widget, is_tool_widget_open
 
 _COLOR_BACKGROUND = me.theme_var("background")
 _COLOR_CHAT_BUBBLE_YOU = me.theme_var("surface-container-low")
@@ -100,21 +101,6 @@ def _make_chat_bubble_style(role: ChatUiRole) -> me.Style:
             bottom=_DEFAULT_BORDER_SIDE,
         ),
     )
-
-
-@dataclass(kw_only=True)
-class ChatUiMessage:
-    role: ChatUiRole = "user"
-    content: str = ""
-
-
-@me.stateclass
-class ChatState:
-    user_input: str
-    system_prompt: str = 'You are a cat beast-man. Please add "nya" to the end of your sentences.'
-    system_prompt_tab: bool = False
-    chat_history: list[ChatUiMessage]
-    in_progress: bool = False
 
 
 def on_user_input_blur(e: me.InputBlurEvent) -> None:
@@ -204,9 +190,15 @@ def __chat_screen(
             on_click=on_click_theme,
         ):
             me.icon("light_mode" if me.theme_brightness() == "dark" else "dark_mode")
+
+        if is_tool_widget_open():
+            with tool_widget():
+                me.slot()
+
         with me.box(style=_make_style_chat_ui_container(bool(title))):
-            if title:
-                me.text(title, type="headline-5", style=_STYLE_TITLE)
+
+            with page_header(title):
+                me.slot()
 
             with me.box(style=_STYLE_CHAT_HISTORY_BOX):
                 for msg in chat_state.chat_history:
