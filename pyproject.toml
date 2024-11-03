@@ -26,6 +26,7 @@ dependencies = [
     "langchain-google-community>=2.0.1",
     "langchain-chroma>=0.1.4",
     "langchain-aws>=0.2.2",
+    "langchain-ollama>=0.2.0",
     "langchainhub>=0.1.21",
     "types-requests>=2.32.0.20240914",
     "mesop>=0.12.6",
