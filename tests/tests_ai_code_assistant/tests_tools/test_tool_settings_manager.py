@@ -41,6 +41,7 @@ async def test_save_tool_setting(app_context: AppContext) -> None:
             enabled=True,
             description="description",
             embedding_model="model",
+            embedding_service="openai",
             source=GitDocumentSourceSettings(
                 type="git",
                 clone_url="clone_url",
@@ -59,6 +60,7 @@ async def test_save_tool_setting(app_context: AppContext) -> None:
     assert setting["enabled"] is True
     assert setting["description"] == "description"
     assert setting["embedding_model"] == "model"
+    assert setting["embedding_service"] == "openai"
     assert setting["source"]["type"] == "git"
     assert setting["source"]["clone_url"] == "clone_url"
     assert setting["source"]["branch"] == "branch"

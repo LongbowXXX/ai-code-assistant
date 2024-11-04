@@ -33,4 +33,5 @@ class ToolSettings(BaseModel):
 class RetrieverToolSettings(ToolSettings):
     description: str
     embedding_model: str
+    embedding_service: Literal["openai", "ollama"]
     source: Union[GitDocumentSourceSettings, PdfDocumentSourceSettings] = Field(..., discriminator="type")
