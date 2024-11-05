@@ -9,7 +9,12 @@ import pytest
 from pytest import TempPathFactory
 
 from ai_code_assistant.common.app_context import AppContext
-from ai_code_assistant.tools.interfaces import RetrieverToolSettings, GitDocumentSourceSettings, ToolType
+from ai_code_assistant.tools.interfaces import (
+    RetrieverToolSettings,
+    GitDocumentSourceSettings,
+    ToolType,
+    ModelServiceType,
+)
 from ai_code_assistant.tools.tool_settings_manager import ToolSettingsManager
 
 
@@ -41,7 +46,7 @@ async def test_save_tool_setting(app_context: AppContext) -> None:
             enabled=True,
             description="description",
             embedding_model="model",
-            embedding_service="openai",
+            model_service=ModelServiceType.OLLAMA,
             source=GitDocumentSourceSettings(
                 type="git",
                 clone_url="clone_url",
@@ -60,7 +65,7 @@ async def test_save_tool_setting(app_context: AppContext) -> None:
     assert setting["enabled"] is True
     assert setting["description"] == "description"
     assert setting["embedding_model"] == "model"
-    assert setting["embedding_service"] == "openai"
+    assert setting["model_service"] == "ollama"
     assert setting["source"]["type"] == "git"
     assert setting["source"]["clone_url"] == "clone_url"
     assert setting["source"]["branch"] == "branch"

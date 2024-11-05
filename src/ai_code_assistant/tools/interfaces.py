@@ -14,13 +14,13 @@ class ToolType(str, Enum):
 
 
 class GitDocumentSourceSettings(BaseModel):
-    type: Literal["git"]
+    type: Literal["git"] = "git"
     clone_url: str
     branch: str
 
 
 class PdfDocumentSourceSettings(BaseModel):
-    type: Literal["pdf"]
+    type: Literal["pdf"] = "pdf"
     file_path: str
 
 
@@ -30,8 +30,13 @@ class ToolSettings(BaseModel):
     enabled: bool
 
 
+class ModelServiceType(str, Enum):
+    OPENAI = "openai"
+    OLLAMA = "ollama"
+
+
 class RetrieverToolSettings(ToolSettings):
     description: str
     embedding_model: str
-    embedding_service: Literal["openai", "ollama"]
+    model_service: ModelServiceType
     source: Union[GitDocumentSourceSettings, PdfDocumentSourceSettings] = Field(..., discriminator="type")

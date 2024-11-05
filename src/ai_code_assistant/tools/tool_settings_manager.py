@@ -65,6 +65,9 @@ class ToolSettingsManager:
         tool_dir = self._app_context.tools_dir_path / tool_name
         remove_dir_contents(tool_dir)
         removed_settings = self._tools.pop(tool_name)
+        if isinstance(removed_settings, RetrieverToolSettings):
+            # await RetrieverTool.remove_tool_async(self._app_context, removed_settings)
+            pass
         return removed_settings
 
     @classmethod
