@@ -22,7 +22,8 @@ async def main() -> None:
     await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
     tools = await ai_tools.load_tools_async()
     ai_config = AiConfig(
-        chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
+        # chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
+        chat_llm=LlmConfig(llm_provider="ollama", llm_model="llama3.1"),
         tools=tools,
     )
     assistant = await AiAssistant.create_async(ai_config=ai_config)

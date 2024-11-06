@@ -21,7 +21,11 @@ logger = logging.getLogger(basename(__name__))
 assistant_model = AiAssistantViewModel()
 
 
-@me.page(path="/ai_code_assistant", title="AI Code Assistant")  # type: ignore[misc]
+@me.page(
+    path="/ai_code_assistant",
+    title="AI Code Assistant",
+    security_policy=me.SecurityPolicy(dangerously_disable_trusted_types=True),
+)  # type: ignore[misc]
 def app() -> None:
     chat_ui(
         transform,

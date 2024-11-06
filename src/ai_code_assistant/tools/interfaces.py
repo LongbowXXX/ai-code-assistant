@@ -5,7 +5,7 @@
 from enum import Enum
 from typing import Union, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class ToolType(str, Enum):
@@ -40,3 +40,29 @@ class RetrieverToolSettings(ToolSettings):
     embedding_model: str
     model_service: ModelServiceType
     source: Union[GitDocumentSourceSettings, PdfDocumentSourceSettings] = Field(..., discriminator="type")
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    @classmethod
+    def of_git_source(
+        cls,
+        *,
+        source_name: str,
+        clone_url: str,
+        branch: str,
+        embed_model: str = "bge-m3",
+        model_service: ModelServiceType = ModelServiceType.OLLAMA,
+    ) -> "RetrieverToolSettings":
+        return RetrieverToolSettings(
+            name=source_name,
+            type=ToolType.RETRIEVER,
+            enabled=True,
+            description=f"{source_name} source code retriever",
+            embedding_model=embed_model,
+            model_service=model_service,
+            source=GitDocumentSourceSettings(
+                type="git",
+                clone_url=clone_url,
+                branch=branch,
+            ),
+        )

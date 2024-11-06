@@ -11,7 +11,7 @@ from ai_code_assistant.assistant.assistant import AiAssistant
 from ai_code_assistant.assistant.interfaces import AiConfig
 from ai_code_assistant.llm.interfaces import LlmConfig
 from ai_code_assistant.tools.ai_tools import AiTools
-from ai_code_assistant.tools.interfaces import ToolSettings, ToolType
+from ai_code_assistant.tools.interfaces import ToolSettings, ToolType, RetrieverToolSettings
 
 
 class AiAssistantViewModel:
@@ -36,10 +36,18 @@ class AiAssistantViewModel:
     async def __setup_async(cls) -> AiAssistant:
         ai_tools = AiTools()
         await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
+        await ai_tools.create_tool_async(
+            RetrieverToolSettings.of_git_source(
+                source_name="ai_code_assistant",
+                clone_url="https://github.com/LongbowXXX/ai-code-assistant",
+                branch="develop",
+            )
+        )
         tools = await ai_tools.load_tools_async()
 
         ai_config = AiConfig(
-            chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
+            # chat_llm=LlmConfig(llm_provider="openai", llm_model="gpt-4o-2024-08-06"),
+            chat_llm=LlmConfig(llm_provider="ollama", llm_model="llama3.1"),
             tools=tools,
         )
         return await AiAssistant.create_async(ai_config=ai_config)

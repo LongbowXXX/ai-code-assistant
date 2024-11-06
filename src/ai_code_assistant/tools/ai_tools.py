@@ -10,7 +10,10 @@ from langchain_community.agent_toolkits.load_tools import load_tools
 from langchain_core.tools import BaseTool
 
 from ai_code_assistant.common.app_context import AppContext
-from ai_code_assistant.tools.interfaces import ToolSettings, RetrieverToolSettings
+from ai_code_assistant.tools.interfaces import (
+    ToolSettings,
+    RetrieverToolSettings,
+)
 from ai_code_assistant.tools.retriever_tool import RetrieverTool
 from ai_code_assistant.tools.tool_settings_manager import ToolSettingsManager
 
