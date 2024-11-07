@@ -40,12 +40,20 @@ class AiAssistant:
 
     @system.setter
     def system(self, system: SystemMessage) -> None:
+        logger.info(f"Setting system message: {system}")
         # remove old system messages
         self._history = [msg for msg in self._history if not isinstance(msg, SystemMessage)]
         # add new system message to head
         self._history.insert(0, system)
 
+    def clear_history(self) -> None:
+        logger.info("clear_history()")
+        tmp_system = self.system
+        self._history.clear()
+        self.system = tmp_system
+
     async def ask_async(self, message: HumanMessage) -> AsyncIterator[str]:
+        logger.info(f"ask(): message={message}")
         self._history.append(message)
         stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
 

@@ -3,6 +3,8 @@
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
 import asyncio
+import logging
+from os.path import basename
 from typing import Optional, Generator, AsyncGenerator
 
 from langchain_core.messages import SystemMessage, HumanMessage
@@ -13,8 +15,10 @@ from ai_code_assistant.llm.interfaces import LlmConfig
 from ai_code_assistant.tools.ai_tools import AiTools
 from ai_code_assistant.tools.interfaces import ToolSettings, ToolType, RetrieverToolSettings
 
+logger = logging.getLogger(basename(__name__))
 
-class AiAssistantViewModel:
+
+class AiAssistantModel:
     _ai_assistant: Optional[AiAssistant] = None
     _loop: Optional[asyncio.AbstractEventLoop] = None
 
@@ -32,8 +36,13 @@ class AiAssistantViewModel:
         self._ai_assistant = assistant
         self._loop = asyncio.new_event_loop()
 
+    def clear_history(self) -> None:
+        if self._ai_assistant:
+            self._ai_assistant.clear_history()
+
     @classmethod
     async def __setup_async(cls) -> AiAssistant:
+        logger.info("__setup_async() start")
         ai_tools = AiTools()
         await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
         await ai_tools.create_tool_async(

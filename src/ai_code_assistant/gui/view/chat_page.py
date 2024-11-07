@@ -136,6 +136,8 @@ def chat_ui(
         output = chat_state.chat_history
         if output is None:
             output = []
+        # deep copy current history
+        current_history = output.copy()
         output.append(ChatUiMessage(role="user", content=chat_input))
         chat_state.in_progress = True
         yield
@@ -145,7 +147,7 @@ def chat_ui(
         yield
 
         start_time = time.time()
-        output_message = transform(chat_input, chat_system_prompt, chat_state.chat_history)
+        output_message = transform(chat_input, chat_system_prompt, current_history)
         assistant_message = ChatUiMessage(role="assistant")
         output.append(assistant_message)
         chat_state.chat_history = output

@@ -19,7 +19,7 @@ class ChatUiMessage:
 @me.stateclass
 class ChatState:
     user_input: str
-    system_prompt: str = 'You are a cat beast-man. Please add "nya" to the end of your sentences.'
+    system_prompt: str = "You are a coding assistant.\nExamine the source code and answer user questions."
     system_prompt_tab: bool = False
     chat_history: list[ChatUiMessage]
     in_progress: bool = False

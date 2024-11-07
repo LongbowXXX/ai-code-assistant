@@ -15,7 +15,7 @@ def setup_logger() -> None:
     file_handler = logging.FileHandler("logs/app.log", encoding="utf-8")
     logging.basicConfig(
         level=logging.DEBUG,
-        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        format="%(asctime)s - %(name)s - %(levelname)s - %(thread)d - %(message)s",
         handlers=[logging.StreamHandler(), file_handler],
     )
     sys.excepthook = _handle_unhandled_exception

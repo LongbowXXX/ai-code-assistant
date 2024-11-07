@@ -9,17 +9,18 @@ from typing import Generator
 import mesop as me
 from dotenv import load_dotenv
 
+from ai_code_assistant.gui.model.ai_assistant_model import AiAssistantModel
 from ai_code_assistant.gui.view.chat_page import chat_ui
 from ai_code_assistant.gui.view.chat_state import ChatUiMessage
 from ai_code_assistant.gui.view.tool_settings.tool_widget import tool_ui
-from ai_code_assistant.gui.view_model.ai_assistant_state import AiAssistantViewModel
 from ai_code_assistant.utils.logger import setup_logger
 
 load_dotenv()
 setup_logger()
 
 logger = logging.getLogger(basename(__name__))
-assistant_model = AiAssistantViewModel()
+
+ai_assistant_model = AiAssistantModel()
 
 
 @me.page(
@@ -44,9 +45,11 @@ def tool_settings_page() -> None:
     tool_ui()
 
 
-def transform(sentence: str, system_prompt: str, _: list[ChatUiMessage]) -> Generator[str, None, None]:
-    assistant_model.setup_assistant_if_needed(system_prompt)
+def transform(sentence: str, system_prompt: str, history: list[ChatUiMessage]) -> Generator[str, None, None]:
+    if not history:
+        ai_assistant_model.clear_history()
+    ai_assistant_model.setup_assistant_if_needed(system_prompt)
     try:
-        yield from assistant_model.ask(sentence)
+        yield from ai_assistant_model.ask(sentence)
     except StopIteration as error:
         logger.info(f"transform(): StopIteration={error.value}")
