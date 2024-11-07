@@ -6,7 +6,7 @@ from dataclasses import fields
 
 import mesop as me
 
-from ai_code_assistant.gui.view.widget.tool_widget import show_tool_widget
+from ai_code_assistant.gui.view.tool_settings.tool_widget import show_tool_widget
 
 
 @me.content_component  # type: ignore[misc]
