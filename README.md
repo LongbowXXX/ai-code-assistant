@@ -11,6 +11,9 @@ Code implementation assistance by LLM.
     - bge-m3 (EmbeddingModel)
   - Ollama download link: https://ollama.com/
   - Ollama quick start guide: https://github.com/ollama/ollama/blob/main/README.md#quickstart
+- RAG (Retrieval Augmented Generation)
+  - To use RAG, you need to use a model that supports Tool Calling.
+  - https://python.langchain.com/docs/integrations/chat/
 
 ## Installation
 ```
