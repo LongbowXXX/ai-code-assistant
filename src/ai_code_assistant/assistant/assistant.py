@@ -60,28 +60,27 @@ class AiAssistant:
         stream_response = self._agent.astream_events({"messages": self._history}, version="v2", stream_mode="updates")
 
         async for event in stream_response:
-            logger.info(f"ask(): event kind={event['event']}, name={event['name']}")
+            logger.debug(f"ask(): event kind={event['event']}, name={event['name']}")
             kind = event["event"]
             if kind == "on_chain_start":
                 if event["name"] == "agent":
-                    logger.info(f"Starting agent: {event['name']} with input: {event['data'].get('input')}")
+                    logger.debug(f"Starting agent: {event['name']} with input: {event['data'].get('input')}")
             elif kind == "on_chain_end":
                 if event["name"] == "agent":
                     output = event["data"].get("output")
                     if output:
-                        ai_message: AIMessage = output["messages"][0]
-                        if "tool_calls" in ai_message.additional_kwargs:
-                            # don't save tool call messages
-                            logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
-                        elif (
-                            "message" in ai_message.response_metadata
-                            and "tool_calls" in ai_message.response_metadata["message"]
-                        ):
-                            # don't save tool call messages
-                            logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
-                        else:
+                        for out_message in output["messages"]:
+                            ai_message: AIMessage = out_message
                             self._history.append(ai_message)
-                            logger.info(f"Done agent: {event['name']} with output: {ai_message}")
+                            if "tool_calls" in ai_message.additional_kwargs:
+                                logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
+                            elif (
+                                "message" in ai_message.response_metadata
+                                and "tool_calls" in ai_message.response_metadata["message"]
+                            ):
+                                logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
+                            else:
+                                logger.info(f"Done agent: {event['name']} with output: {ai_message}")
                     else:
                         logger.warning("Agent did not return any output")
 
@@ -93,10 +92,10 @@ class AiAssistant:
                     # So we only print non-empty content
                     yield content
             elif kind == "on_tool_start":
-                logger.info(f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}")
+                logger.debug(f"Starting tool: {event['name']} " f"with inputs: {event['data'].get('input')}")
             elif kind == "on_tool_end":
                 output = event["data"].get("output")
                 logger.info(f"Done tool: {event['name']} " f"with output: {output}")
                 if isinstance(output, ToolMessage):
                     logger.info(f"Tool message: {output}")
-                    # don't save tool messages
+                    self._history.append(output)
