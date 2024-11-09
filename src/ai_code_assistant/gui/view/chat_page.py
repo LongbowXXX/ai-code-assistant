@@ -9,7 +9,7 @@ import mesop as me
 from mesop import ClickEvent
 from mesop.component_helpers.style import ItemAlignmentValues
 
-from ai_code_assistant.gui.view.chat_state import ChatUiRole, ChatState, ChatUiMessage
+from ai_code_assistant.gui.chat_state import ChatUiRole, ChatState, ChatUiMessage
 from ai_code_assistant.gui.view.page_header import page_header
 
 _COLOR_BACKGROUND = me.theme_var("background")

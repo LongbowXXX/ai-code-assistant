@@ -6,8 +6,9 @@ import logging
 from os.path import basename
 from pathlib import Path
 
+from langchain_chroma import Chroma
 from langchain_community.document_loaders import GitLoader, PyPDFLoader
-from langchain_community.vectorstores import Chroma
+
 from langchain_core.documents import Document
 from langchain_core.tools import BaseTool, create_retriever_tool
 from langchain_core.vectorstores import VectorStore

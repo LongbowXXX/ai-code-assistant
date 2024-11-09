@@ -2,6 +2,7 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
+import asyncio
 import logging
 from os.path import basename
 from typing import Generator
@@ -11,7 +12,7 @@ from dotenv import load_dotenv
 
 from ai_code_assistant.gui.model.ai_assistant_model import AiAssistantModel
 from ai_code_assistant.gui.view.chat_page import chat_ui
-from ai_code_assistant.gui.view.chat_state import ChatUiMessage
+from ai_code_assistant.gui.chat_state import ChatUiMessage
 from ai_code_assistant.gui.view.tool_settings.tool_widget import tool_ui
 from ai_code_assistant.utils.logger import setup_logger
 
@@ -20,7 +21,7 @@ setup_logger()
 
 logger = logging.getLogger(basename(__name__))
 
-ai_assistant_model = AiAssistantModel()
+ai_assistant_model = asyncio.run(AiAssistantModel.create())
 
 
 @me.page(
@@ -48,7 +49,7 @@ def tool_settings_page() -> None:
 def transform(sentence: str, system_prompt: str, history: list[ChatUiMessage]) -> Generator[str, None, None]:
     if not history:
         ai_assistant_model.clear_history()
-    ai_assistant_model.setup_assistant_if_needed(system_prompt)
+    ai_assistant_model.system = system_prompt
     try:
         yield from ai_assistant_model.ask(sentence)
     except StopIteration as error:

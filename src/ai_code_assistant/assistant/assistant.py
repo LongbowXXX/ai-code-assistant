@@ -50,11 +50,13 @@ class AiAssistant:
         logger.info("clear_history()")
         tmp_system = self.system
         self._history.clear()
-        self.system = tmp_system
+        if tmp_system:
+            self.system = tmp_system
 
     async def ask_async(self, message: HumanMessage) -> AsyncIterator[str]:
         logger.info(f"ask(): message={message}")
         self._history.append(message)
+        logger.info(f"ask(): history={self._history}")
         stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
 
         async for event in stream_response:

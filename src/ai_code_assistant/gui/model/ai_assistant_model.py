@@ -5,7 +5,7 @@
 import asyncio
 import logging
 from os.path import basename
-from typing import Optional, Generator, AsyncGenerator
+from typing import Generator, AsyncGenerator
 
 from langchain_core.messages import SystemMessage, HumanMessage
 
@@ -13,45 +13,41 @@ from ai_code_assistant.assistant.assistant import AiAssistant
 from ai_code_assistant.assistant.interfaces import AiConfig
 from ai_code_assistant.llm.interfaces import LlmConfig
 from ai_code_assistant.tools.ai_tools import AiTools
-from ai_code_assistant.tools.interfaces import ToolSettings, ToolType, RetrieverToolSettings
 
 logger = logging.getLogger(basename(__name__))
 
 
 class AiAssistantModel:
-    _ai_assistant: Optional[AiAssistant] = None
-    _loop: Optional[asyncio.AbstractEventLoop] = None
+    _ai_assistant: AiAssistant
+    _loop: asyncio.AbstractEventLoop
 
     def __init__(
         self,
+        ai_assistant: AiAssistant,
+        loop: asyncio.AbstractEventLoop,
     ) -> None:
         super().__init__()
+        self._ai_assistant = ai_assistant
+        self._loop = loop
 
-    def setup_assistant_if_needed(self, system_prompt: str) -> None:
-        if self._ai_assistant:
-            self._ai_assistant.system = SystemMessage(system_prompt)
-            return
-        assistant = asyncio.run(self.__setup_async())
-        assistant.system = SystemMessage(system_prompt)
-        self._ai_assistant = assistant
-        self._loop = asyncio.new_event_loop()
-
-    def clear_history(self) -> None:
-        if self._ai_assistant:
-            self._ai_assistant.clear_history()
+    @classmethod
+    async def create(cls) -> "AiAssistantModel":
+        assistant = await cls.__setup_async()
+        loop = asyncio.new_event_loop()
+        return AiAssistantModel(assistant, loop)
 
     @classmethod
     async def __setup_async(cls) -> AiAssistant:
         logger.info("__setup_async() start")
         ai_tools = AiTools()
-        await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
-        await ai_tools.create_tool_async(
-            RetrieverToolSettings.of_git_source(
-                source_name="ai_code_assistant",
-                clone_url="https://github.com/LongbowXXX/ai-code-assistant",
-                branch="develop",
-            )
-        )
+        # await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
+        # await ai_tools.create_tool_async(
+        #     RetrieverToolSettings.of_git_source(
+        #         source_name="ai_code_assistant",
+        #         clone_url="https://github.com/LongbowXXX/ai-code-assistant",
+        #         branch="develop",
+        #     )
+        # )
         tools = await ai_tools.load_tools_async()
 
         ai_config = AiConfig(
@@ -60,6 +56,20 @@ class AiAssistantModel:
             tools=tools,
         )
         return await AiAssistant.create_async(ai_config=ai_config)
+
+    @property
+    def system(self) -> str:
+        system_message = self._ai_assistant.system
+        return str(system_message.content) if system_message else ""
+
+    @system.setter
+    def system(self, system_prompt: str) -> None:
+        new_message = SystemMessage(system_prompt)
+        logger.info(f"Setting system message: {new_message}")
+        self._ai_assistant.system = new_message
+
+    def clear_history(self) -> None:
+        self._ai_assistant.clear_history()
 
     def ask(self, sentence: str) -> Generator[str, None, None]:
         new_message = HumanMessage(sentence)

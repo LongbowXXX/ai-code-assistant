@@ -4,7 +4,7 @@
 #  http://opensource.org/licenses/mit-license.php
 import mesop as me
 
-from ai_code_assistant.gui.view.tool_settings.tool_state import ToolState
+from ai_code_assistant.gui.tool_state import ToolState
 
 _COLOR_CHAT_BUBBLE_EDITED = "#f2ebff"
 _DEFAULT_PADDING = me.Padding.all(20)
