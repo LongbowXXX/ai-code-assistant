@@ -2,9 +2,17 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
+import logging
+from os.path import basename
+from typing import Callable
+
 import mesop as me
 
+from ai_code_assistant.gui.model.ai_assistant_model import AiAssistantModel
 from ai_code_assistant.gui.tool_state import ToolState
+from ai_code_assistant.llm.interfaces import LlmConfig
+
+logger = logging.getLogger(basename(__name__))
 
 _COLOR_CHAT_BUBBLE_EDITED = "#f2ebff"
 _DEFAULT_PADDING = me.Padding.all(20)
@@ -40,11 +48,39 @@ def hide_tool_widget() -> None:
     me.navigate("/")
 
 
-def tool_ui() -> None:
+def update_state_if_needed(ai_assistant: AiAssistantModel) -> None:
     state = me.state(ToolState)
+    if not state.initialized:
+        state.initialized = True
+        state.llm_provider = ai_assistant.llm_config.llm_provider
+        state.llm_model = ai_assistant.llm_config.llm_model
+
+
+def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
+    update_state_if_needed(ai_assistant())
+    state = me.state(ToolState)
+    logger.info(f"tool_settings_ui() {state}")
     # Modal
     with me.box(style=_STYLE_MODAL_CONTAINER):
         with me.box(style=_STYLE_MODAL_CONTENT):
+            with me.box():
+                me.text("Chat LLM Provider")
+                me.radio(
+                    on_change=on_provider_changed,
+                    options=[
+                        me.RadioOption(label="OpenAI", value="openai"),
+                        me.RadioOption(label="Amazon Bedrock", value="amazon_bedrock"),
+                        me.RadioOption(label="Ollama", value="ollama"),
+                    ],
+                    value=state.llm_provider,
+                )
+                me.input(
+                    label="Chat LLM Model",
+                    appearance="outline",
+                    style=_STYLE_INPUT_WIDTH,
+                    value=state.llm_model,
+                    on_blur=on_llm_model_blur,
+                )
             me.input(
                 label="Clone URL",
                 appearance="outline",
@@ -58,7 +94,7 @@ def tool_ui() -> None:
                     "Submit Rewrite",
                     color="primary",
                     type="flat",
-                    on_click=on_click_submit_rewrite,
+                    on_click=lambda event: on_click_submit_rewrite(event, ai_assistant()),
                 )
                 me.button(
                     "Cancel",
@@ -67,11 +103,9 @@ def tool_ui() -> None:
             with me.box(style=_STYLE_PREVIEW_CONTAINER):
                 with me.box(style=_STYLE_PREVIEW_ORIGINAL):
                     me.text("Original Message", type="headline-6")
-                    me.markdown(state.preview_original)
 
                 with me.box(style=_STYLE_PREVIEW_REWRITE):
                     me.text("Preview Rewrite", type="headline-6")
-                    me.markdown(state.preview_rewrite)
 
 
 def on_clone_url_blur(e: me.InputBlurEvent) -> None:
@@ -79,29 +113,32 @@ def on_clone_url_blur(e: me.InputBlurEvent) -> None:
     state.clone_url = e.value
 
 
-def on_click_submit_rewrite(_: me.ClickEvent) -> None:
+async def on_click_submit_rewrite(_: me.ClickEvent, assistant: AiAssistantModel) -> None:
     """Submits rewrite message."""
+    state: ToolState = me.state(ToolState)
+    await assistant.update_assistant(
+        LlmConfig(
+            llm_provider=state.llm_provider,  # type: ignore[arg-type]
+            llm_model=state.llm_model,
+        )
+    )
     hide_tool_widget()
+    state = me.state(ToolState)
+    state.initialized = False
 
 
 def on_click_cancel_rewrite(_: me.ClickEvent) -> None:
     """Hides rewrite modal."""
     hide_tool_widget()
+    state = me.state(ToolState)
+    state.initialized = False
 
 
-def _make_modal_background_style(modal_open: bool) -> me.Style:
-    """Makes style for modal background.
+def on_provider_changed(event: me.RadioChangeEvent) -> None:
+    state = me.state(ToolState)
+    state.llm_provider = event.value
 
-    Args:
-      modal_open: Whether the modal is open.
-    """
-    return me.Style(
-        display="block" if modal_open else "none",
-        position="fixed",
-        z_index=1000,
-        width="100%",
-        height="100%",
-        overflow_x="auto",
-        overflow_y="auto",
-        background="rgba(0,0,0,0.4)",
-    )
+
+def on_llm_model_blur(e: me.InputBlurEvent) -> None:
+    state = me.state(ToolState)
+    state.llm_model = e.value

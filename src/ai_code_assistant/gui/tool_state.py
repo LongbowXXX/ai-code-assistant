@@ -7,6 +7,7 @@ import mesop as me
 
 @me.stateclass
 class ToolState:
+    initialized: bool = False
     clone_url: str = ""
-    preview_original: str = ""
-    preview_rewrite: str = ""
+    llm_provider: str = ""
+    llm_model: str = ""
