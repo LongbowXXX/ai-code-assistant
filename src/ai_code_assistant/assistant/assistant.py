@@ -57,10 +57,10 @@ class AiAssistant:
         logger.info(f"ask(): message={message}")
         self._history.append(message)
         logger.info(f"ask(): history={self._history}")
-        stream_response = self._agent.astream_events({"messages": self._history}, version="v1", stream_mode="updates")
+        stream_response = self._agent.astream_events({"messages": self._history}, version="v2", stream_mode="updates")
 
         async for event in stream_response:
-            # logger.info(f"ask(): event={event}")
+            logger.info(f"ask(): event kind={event['event']}, name={event['name']}")
             kind = event["event"]
             if kind == "on_chain_start":
                 if event["name"] == "agent":
@@ -71,6 +71,12 @@ class AiAssistant:
                     if output:
                         ai_message: AIMessage = output["messages"][0]
                         if "tool_calls" in ai_message.additional_kwargs:
+                            # don't save tool call messages
+                            logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
+                        elif (
+                            "message" in ai_message.response_metadata
+                            and "tool_calls" in ai_message.response_metadata["message"]
+                        ):
                             # don't save tool call messages
                             logger.info(f"Done agent tool calling: {event['name']} with output: {ai_message}")
                         else:
