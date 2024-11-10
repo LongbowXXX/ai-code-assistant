@@ -1,5 +1,8 @@
 name: Python CI
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ '*' ]
