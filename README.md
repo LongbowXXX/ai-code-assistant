@@ -28,7 +28,9 @@ Code implementation assistance by LLM.
     - [Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/getting-started.html)
 4. Copy .env.example to .env and set the environment variables in the .env file.
 
-### Google Custom Search API
+
+## Demo
+<div style="width: 60%;"><video controls style="width: 100%;" src="images/00_AiCodeAssistant_Demo.mp4"></video></div>
 
 ## Installation
 
