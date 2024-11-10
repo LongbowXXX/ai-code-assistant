@@ -32,3 +32,11 @@ jobs:
         run: black . --check
       - name: Run pytest
         run: pytest --html=build/reports/test/result/report.html --cov --cov-report=html:build/reports/test/coverage --cov-report=term
+      - name: Create documents
+        run: ./make.bat html
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.event_name == 'release'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/html
