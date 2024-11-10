@@ -14,7 +14,7 @@ from ai_code_assistant.assistant.interfaces import AiConfig
 from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.llm.interfaces import LlmConfig
 from ai_code_assistant.tools.ai_tools import AiTools
-from ai_code_assistant.tools.interfaces import ToolSettings
+from ai_code_assistant.tools.interfaces import ToolSettings, RetrieverToolSettings, ToolType
 
 logger = logging.getLogger(basename(__name__))
 
@@ -52,15 +52,11 @@ class AiAssistantModel:
     @classmethod
     async def __create_ai_assistant(cls, ai_tools: AiTools, llm_config: LlmConfig) -> AiAssistant:
         logger.info("__create_ai_assistant() start")
-        # await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
-        # await ai_tools.create_tool_async(
-        #     RetrieverToolSettings.of_git_source(
-        #         source_name="ai_code_assistant",
-        #         clone_url="https://github.com/LongbowXXX/ai-code-assistant",
-        #         branch="develop",
-        #     )
-        # )
+
         tools = await ai_tools.load_tools_async()
+
+        for tool in tools:
+            logger.info(f"__create_ai_assistant(): Loaded tool {tool.tool_settings.name}")
 
         ai_config = AiConfig(
             chat_llm=llm_config,
@@ -81,7 +77,22 @@ class AiAssistantModel:
         await self.update_assistant(self._llm_config)
         return removed
 
+    async def add_google_search(self) -> None:
+        await self._ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
+        await self.update_assistant(self._llm_config)
+
+    async def add_git_source(self, source_name: str, clone_url: str, branch: str) -> None:
+        await self._ai_tools.create_tool_async(
+            RetrieverToolSettings.of_git_source(
+                source_name=source_name,
+                clone_url=clone_url,
+                branch=branch,
+            )
+        )
+        await self.update_assistant(self._llm_config)
+
     async def update_assistant(self, llm_config: LlmConfig) -> None:
+        logger.info(f"update_assistant() : {llm_config}")
         self._llm_config = llm_config
         llm_config.save_to_file(self._app_context.data_dir)
         self._ai_assistant = await self.__create_ai_assistant(self._ai_tools, llm_config)

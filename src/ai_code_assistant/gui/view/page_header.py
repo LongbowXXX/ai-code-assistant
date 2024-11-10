@@ -18,7 +18,7 @@ def page_header(title: str) -> None:
                 me.text(title, type="headline-6", style=me.Style(margin=me.Margin(bottom=0)))
 
             with header_section():
-                me.button("Tool", on_click=lambda _: show_tool_widget())
+                me.button("Tool Settings", on_click=lambda _: show_tool_widget())
 
 
 @me.content_component  # type: ignore[misc]

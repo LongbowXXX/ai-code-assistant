@@ -31,6 +31,15 @@ _STYLE_MODAL_CONTAINER = me.Style(
 _STYLE_INPUT_WIDTH = me.Style(width="100%")
 _STYLE_MODAL_CONTENT = me.Style(margin=me.Margin.all(20))
 
+_CONTENT_GROUP = me.Style(
+    background="#fff",
+    width="100%",
+    margin=me.Margin.all(5),
+    border=me.Border.all(me.BorderSide(width=2, color="gray", style="solid")),
+    border_radius=10,
+    padding=me.Padding.all(8),
+)
+
 
 def show_tool_widget() -> None:
     me.navigate("/tool_settings")
@@ -55,7 +64,7 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
     # Modal
     with me.box(style=_STYLE_MODAL_CONTAINER):
         with me.box(style=_STYLE_MODAL_CONTENT):
-            with me.box():
+            with me.box(style=_CONTENT_GROUP):
                 me.text("Chat LLM Provider")
                 me.radio(
                     on_change=on_provider_changed,
@@ -73,39 +82,97 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
                     value=state.llm_model,
                     on_blur=on_llm_model_blur,
                 )
-            me.input(
-                label="Clone URL",
-                appearance="outline",
-                style=_STYLE_INPUT_WIDTH,
-                value=state.clone_url,
-                on_blur=on_clone_url_blur,
-            )
-
-            for tool in ai_assistant().tools:
-                with me.box():
-                    me.text(f"{tool.name}:{tool.type}")
-                    me.button("Remove", on_click=lambda _: ai_assistant().remove_tool(tool.name))
-
-            with me.box():
                 me.button(
-                    "Submit Rewrite",
+                    "Apply LLM Config",
                     color="primary",
                     type="flat",
-                    on_click=lambda event: on_click_submit_rewrite(event, ai_assistant()),
+                    on_click=lambda event: on_apply_llm_config(event, ai_assistant()),
+                )
+
+            with me.box(style=_CONTENT_GROUP):
+                me.input(
+                    label="Git Clone URL",
+                    appearance="outline",
+                    style=_STYLE_INPUT_WIDTH,
+                    value=state.git_clone_url,
+                    on_blur=on_clone_url_blur,
+                )
+                me.input(
+                    label="Git Branch",
+                    appearance="outline",
+                    style=_STYLE_INPUT_WIDTH,
+                    value=state.git_branch,
+                    on_blur=on_branch_blur,
+                )
+                me.input(
+                    label="Source Name (Only letters, numbers and _ are allowed.)",
+                    appearance="outline",
+                    style=_STYLE_INPUT_WIDTH,
+                    value=state.git_source_name,
+                    on_blur=on_source_name_blur,
                 )
                 me.button(
-                    "Cancel",
-                    on_click=on_click_cancel_rewrite,
+                    "Add Git Source for Retriever",
+                    color="primary",
+                    type="flat",
+                    on_click=lambda event: on_add_git_source(event, ai_assistant()),
                 )
+
+            with me.box(style=_CONTENT_GROUP):
+                me.text("Builtin-tools")
+                me.button(
+                    "Add Google Search",
+                    color="primary",
+                    type="flat",
+                    on_click=lambda event: on_add_google_search(event, ai_assistant()),
+                )
+
+            with me.box(style=_CONTENT_GROUP):
+                me.text(f"Enabled Tools: {len(ai_assistant().tools)}")
+
+                for tool in ai_assistant().tools:
+                    with me.box():
+                        me.text(f"{tool.name}: [{tool.type}]")
+                        me.button(
+                            f"Remove {tool.name}",
+                            key=tool.name,
+                            on_click=lambda event: ai_assistant().remove_tool(event.key),
+                        )
+
+            me.button(
+                "Exit Setting page",
+                on_click=on_exit_settings,
+            )
 
 
 def on_clone_url_blur(e: me.InputBlurEvent) -> None:
     state = me.state(ToolState)
-    state.clone_url = e.value
+    state.git_clone_url = e.value
 
 
-async def on_click_submit_rewrite(_: me.ClickEvent, assistant: AiAssistantModel) -> None:
-    """Submits rewrite message."""
+def on_source_name_blur(e: me.InputBlurEvent) -> None:
+    state = me.state(ToolState)
+    state.git_source_name = e.value
+
+
+def on_branch_blur(e: me.InputBlurEvent) -> None:
+    state = me.state(ToolState)
+    state.git_branch = e.value
+
+
+async def on_add_google_search(_: me.ClickEvent, assistant: AiAssistantModel) -> None:
+    await assistant.add_google_search()
+
+
+async def on_add_git_source(_: me.ClickEvent, assistant: AiAssistantModel) -> None:
+    state: ToolState = me.state(ToolState)
+    await assistant.add_git_source(state.git_source_name, state.git_clone_url, state.git_branch)
+    # state.git_source_name = ""
+    # state.git_clone_url = ""
+    # state.git_branch = ""
+
+
+async def on_apply_llm_config(_: me.ClickEvent, assistant: AiAssistantModel) -> None:
     state: ToolState = me.state(ToolState)
     await assistant.update_assistant(
         LlmConfig(
@@ -113,13 +180,9 @@ async def on_click_submit_rewrite(_: me.ClickEvent, assistant: AiAssistantModel)
             llm_model=state.llm_model,
         )
     )
-    hide_tool_widget()
-    state = me.state(ToolState)
-    state.initialized = False
 
 
-def on_click_cancel_rewrite(_: me.ClickEvent) -> None:
-    """Hides rewrite modal."""
+def on_exit_settings(_: me.ClickEvent) -> None:
     hide_tool_widget()
     state = me.state(ToolState)
     state.initialized = False
