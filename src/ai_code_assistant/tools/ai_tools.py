@@ -9,6 +9,7 @@ from typing import cast
 from langchain_community.agent_toolkits.load_tools import load_tools
 from langchain_core.tools import BaseTool
 
+from ai_code_assistant.assistant.interfaces import AiTool
 from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.tools.interfaces import (
     ToolSettings,
@@ -28,11 +29,6 @@ class AiTools:
         super().__init__()
         self._app_context = app_context
         self._setting_manager = ToolSettingsManager(AppContext())
-        self._tool_settings: dict[str, ToolSettings] = {}
-
-    @property
-    def tool_settings(self) -> dict[str, ToolSettings]:
-        return self._tool_settings
 
     async def create_tool_async(self, tool_settings: ToolSettings) -> BaseTool:
         logger.info(f"create_tool_async() tool_settings={tool_settings}")
@@ -46,29 +42,27 @@ class AiTools:
             case _:
                 raise NotImplementedError(f"Tool type {tool_settings.type} is not supported.")
         await self._setting_manager.save_tool_setting(tool_settings)
-        self._tool_settings[tool.name] = tool_settings
         return tool
 
-    async def load_tools_async(self) -> list[BaseTool]:
+    async def load_tools_async(self) -> list[AiTool]:
         logger.info("load_tools_async()")
         tool_settings = await self._setting_manager.load_tool_settings()
-        # tool_settings to self._tool_settings
-        self._tool_settings = {tool.name: tool for tool in tool_settings}
         return [await self._load_tool_async(self._app_context, tool_settings) for tool_settings in tool_settings]
 
     async def remove_tool_setting(self, tool_name: str) -> ToolSettings:
         logger.info(f"remove_tool_setting() tool_name={tool_name}")
         removed = await self._setting_manager.remove_tool_setting(tool_name)
-        self._tool_settings.pop(tool_name)
         return removed
 
     @classmethod
-    async def _load_tool_async(cls, app_context: AppContext, tool_settings: ToolSettings) -> BaseTool:
+    async def _load_tool_async(cls, app_context: AppContext, tool_settings: ToolSettings) -> AiTool:
         match tool_settings.type:
             case "retriever":
-                return await RetrieverTool.load_tool_async(cast(RetrieverToolSettings, tool_settings), app_context)
+                base_tool = await RetrieverTool.load_tool_async(cast(RetrieverToolSettings, tool_settings), app_context)
+                return AiTool(tool=base_tool, tool_settings=tool_settings)
             case "builtin":
-                return await cls._load_builtin_tool_async(tool_settings)
+                base_tool = await cls._load_builtin_tool_async(tool_settings)
+                return AiTool(tool=base_tool, tool_settings=tool_settings)
             case _:
                 raise NotImplementedError(f"Tool type {tool_settings.type} is not supported.")
 

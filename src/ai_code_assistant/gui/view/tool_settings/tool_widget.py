@@ -14,6 +14,7 @@ from ai_code_assistant.llm.interfaces import LlmConfig
 
 logger = logging.getLogger(basename(__name__))
 
+# noinspection SpellCheckingInspection
 _COLOR_CHAT_BUBBLE_EDITED = "#f2ebff"
 _DEFAULT_PADDING = me.Padding.all(20)
 
@@ -29,15 +30,6 @@ _STYLE_MODAL_CONTAINER = me.Style(
 )
 _STYLE_INPUT_WIDTH = me.Style(width="100%")
 _STYLE_MODAL_CONTENT = me.Style(margin=me.Margin.all(20))
-
-_STYLE_PREVIEW_CONTAINER = me.Style(
-    display="grid",
-    grid_template_columns="repeat(2, 1fr)",
-)
-
-_STYLE_PREVIEW_ORIGINAL = me.Style(color="#777", padding=_DEFAULT_PADDING)
-
-_STYLE_PREVIEW_REWRITE = me.Style(background=_COLOR_CHAT_BUBBLE_EDITED, padding=_DEFAULT_PADDING)
 
 
 def show_tool_widget() -> None:
@@ -89,6 +81,11 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
                 on_blur=on_clone_url_blur,
             )
 
+            for tool in ai_assistant().tools:
+                with me.box():
+                    me.text(f"{tool.name}:{tool.type}")
+                    me.button("Remove", on_click=lambda _: ai_assistant().remove_tool(tool.name))
+
             with me.box():
                 me.button(
                     "Submit Rewrite",
@@ -100,12 +97,6 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
                     "Cancel",
                     on_click=on_click_cancel_rewrite,
                 )
-            with me.box(style=_STYLE_PREVIEW_CONTAINER):
-                with me.box(style=_STYLE_PREVIEW_ORIGINAL):
-                    me.text("Original Message", type="headline-6")
-
-                with me.box(style=_STYLE_PREVIEW_REWRITE):
-                    me.text("Preview Rewrite", type="headline-6")
 
 
 def on_clone_url_blur(e: me.InputBlurEvent) -> None:

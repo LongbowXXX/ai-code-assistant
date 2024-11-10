@@ -14,12 +14,14 @@ from ai_code_assistant.assistant.interfaces import AiConfig
 from ai_code_assistant.common.app_context import AppContext
 from ai_code_assistant.llm.interfaces import LlmConfig
 from ai_code_assistant.tools.ai_tools import AiTools
+from ai_code_assistant.tools.interfaces import ToolSettings
 
 logger = logging.getLogger(basename(__name__))
 
 
 class AiAssistantModel:
     _ai_assistant: AiAssistant
+    _ai_tools: AiTools
     _llm_config: LlmConfig
     _loop: asyncio.AbstractEventLoop
     _app_context: AppContext
@@ -27,12 +29,14 @@ class AiAssistantModel:
     def __init__(
         self,
         ai_assistant: AiAssistant,
+        ai_tools: AiTools,
         llm_config: LlmConfig,
         loop: asyncio.AbstractEventLoop,
         app_context: AppContext,
     ) -> None:
         super().__init__()
         self._ai_assistant = ai_assistant
+        self._ai_tools = ai_tools
         self._llm_config = llm_config
         self._loop = loop
         self._app_context = app_context
@@ -40,14 +44,14 @@ class AiAssistantModel:
     @classmethod
     async def create(cls, app_context: AppContext) -> "AiAssistantModel":
         llm_config = LlmConfig.load_from_file(app_context.data_dir)
-        assistant = await cls.__create_ai_assistant(app_context, llm_config)
+        ai_tools = AiTools(app_context)
+        assistant = await cls.__create_ai_assistant(ai_tools, llm_config)
         loop = asyncio.new_event_loop()
-        return AiAssistantModel(assistant, llm_config, loop, app_context)
+        return AiAssistantModel(assistant, ai_tools, llm_config, loop, app_context)
 
     @classmethod
-    async def __create_ai_assistant(cls, app_context: AppContext, llm_config: LlmConfig) -> AiAssistant:
+    async def __create_ai_assistant(cls, ai_tools: AiTools, llm_config: LlmConfig) -> AiAssistant:
         logger.info("__create_ai_assistant() start")
-        ai_tools = AiTools(app_context)
         # await ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
         # await ai_tools.create_tool_async(
         #     RetrieverToolSettings.of_git_source(
@@ -65,13 +69,22 @@ class AiAssistantModel:
         return await AiAssistant.create_async(ai_config=ai_config)
 
     @property
+    def tools(self) -> list[ToolSettings]:
+        return [ai_tool.tool_settings for ai_tool in self._ai_assistant.ai_config.tools]
+
+    @property
     def llm_config(self) -> LlmConfig:
         return self._llm_config
+
+    async def remove_tool(self, tool_name: str) -> ToolSettings:
+        removed = await self._ai_tools.remove_tool_setting(tool_name)
+        await self.update_assistant(self._llm_config)
+        return removed
 
     async def update_assistant(self, llm_config: LlmConfig) -> None:
         self._llm_config = llm_config
         llm_config.save_to_file(self._app_context.data_dir)
-        self._ai_assistant = await self.__create_ai_assistant(self._app_context, llm_config)
+        self._ai_assistant = await self.__create_ai_assistant(self._ai_tools, llm_config)
 
     @property
     def system(self) -> str:

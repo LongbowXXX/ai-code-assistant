@@ -25,13 +25,20 @@ class AiAssistant:
         ai_llms: AiLlms = AiLlms(),
     ) -> "AiAssistant":
         llm = ai_llms.create_llm(llm_config=ai_config.chat_llm)
-        agent = create_react_agent(llm, ai_config.tools)
+        # AiTool to BaseTool
+        base_tools = [ai_tool.tool for ai_tool in ai_config.tools]
+        agent = create_react_agent(llm, base_tools)
 
-        return AiAssistant(agent)
+        return AiAssistant(agent, ai_config)
 
-    def __init__(self, agent: CompiledGraph):
+    def __init__(self, agent: CompiledGraph, ai_config: AiConfig):
         self._agent = agent
+        self._ai_config = ai_config
         self._history: list[BaseMessage] = []
+
+    @property
+    def ai_config(self) -> AiConfig:
+        return self._ai_config
 
     @property
     def system(self) -> Optional[SystemMessage]:
