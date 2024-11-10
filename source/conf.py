@@ -25,6 +25,7 @@ author = "LongbowXXX"
 extensions = [
     "myst_parser",
     "sphinxcontrib.mermaid",
+    "sphinx.ext.autodoc",
 ]
 
 templates_path = ["_templates"]
