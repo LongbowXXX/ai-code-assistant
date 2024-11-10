@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ai_code_assistant.tools package &#8212; ai-code-assistant  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ai_code_assistant.utils package" href="ai_code_assistant.utils.html" />
+    <link rel="prev" title="ai_code_assistant.llm package" href="ai_code_assistant.llm.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="ai-code-assistant-tools-package">
+<h1>ai_code_assistant.tools package<a class="headerlink" href="#ai-code-assistant-tools-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-ai_code_assistant.tools.ai_tools">
+<span id="ai-code-assistant-tools-ai-tools-module"></span><h2>ai_code_assistant.tools.ai_tools module<a class="headerlink" href="#module-ai_code_assistant.tools.ai_tools" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.ai_tools.AiTools">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.ai_tools.</span></span><span class="sig-name descname"><span class="pre">AiTools</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.common.html#ai_code_assistant.common.app_context.AppContext" title="ai_code_assistant.common.app_context.AppContext"><span class="pre">AppContext</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">AppContext(data_dir=WindowsPath('C:/Users/runneradmin/AppData/Roaming/ai-code-assistant'),</span> <span class="pre">db_dir=WindowsPath('C:/Users/runneradmin/AppData/Roaming/ai-code-assistant/db'),</span> <span class="pre">repository_dir=WindowsPath('C:/Users/runneradmin/AppData/Roaming/ai-code-assistant/repository'),</span> <span class="pre">tools_dir_path=WindowsPath('C:/Users/runneradmin/AppData/Roaming/ai-code-assistant/tools'))</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.ai_tools.AiTools" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.ai_tools.AiTools.create_tool_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_tool_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BaseTool</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.ai_tools.AiTools.create_tool_async" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.ai_tools.AiTools.load_tools_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_tools_async</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ai_code_assistant.assistant.html#ai_code_assistant.assistant.interfaces.AiTool" title="ai_code_assistant.assistant.interfaces.AiTool"><span class="pre">AiTool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ai_code_assistant.tools.ai_tools.AiTools.load_tools_async" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.ai_tools.AiTools.remove_tool_setting">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tool_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></span></span><a class="headerlink" href="#ai_code_assistant.tools.ai_tools.AiTools.remove_tool_setting" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ai_code_assistant.tools.embeddings">
+<span id="ai-code-assistant-tools-embeddings-module"></span><h2>ai_code_assistant.tools.embeddings module<a class="headerlink" href="#module-ai_code_assistant.tools.embeddings" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.embeddings.create_embedding">
+<span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.embeddings.</span></span><span class="sig-name descname"><span class="pre">create_embedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ModelServiceType" title="ai_code_assistant.tools.interfaces.ModelServiceType"><span class="pre">ModelServiceType</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Embeddings</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.embeddings.create_embedding" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-ai_code_assistant.tools.interfaces">
+<span id="ai-code-assistant-tools-interfaces-module"></span><h2>ai_code_assistant.tools.interfaces module<a class="headerlink" href="#module-ai_code_assistant.tools.interfaces" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">GitDocumentSourceSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'git'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'git'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clone_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.branch">
+<span class="sig-name descname"><span class="pre">branch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.branch" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.clone_url">
+<span class="sig-name descname"><span class="pre">clone_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.clone_url" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'branch':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'clone_url':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'type':</span> <span class="pre">FieldInfo(annotation=Literal['git'],</span> <span class="pre">required=False,</span> <span class="pre">default='git')}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'git'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings.type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ModelServiceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">ModelServiceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ModelServiceType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ModelServiceType.OLLAMA">
+<span class="sig-name descname"><span class="pre">OLLAMA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ollama'</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ModelServiceType.OLLAMA" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ModelServiceType.OPENAI">
+<span class="sig-name descname"><span class="pre">OPENAI</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'openai'</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ModelServiceType.OPENAI" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">PdfDocumentSourceSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pdf'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.file_path" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'file_path':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'type':</span> <span class="pre">FieldInfo(annotation=Literal['pdf'],</span> <span class="pre">required=False,</span> <span class="pre">default='pdf')}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'pdf'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings.type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">RetrieverToolSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolType" title="ai_code_assistant.tools.interfaces.ToolType"><span class="pre">ToolType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embedding_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ModelServiceType" title="ai_code_assistant.tools.interfaces.ModelServiceType"><span class="pre">ModelServiceType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings" title="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings"><span class="pre">GitDocumentSourceSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings" title="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings"><span class="pre">PdfDocumentSourceSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolSettings</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.description" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.embedding_model">
+<span class="sig-name descname"><span class="pre">embedding_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.embedding_model" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'protected_namespaces':</span> <span class="pre">()}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'description':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'embedding_model':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'enabled':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=True),</span> <span class="pre">'model_service':</span> <span class="pre">FieldInfo(annotation=ModelServiceType,</span> <span class="pre">required=True),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'source':</span> <span class="pre">FieldInfo(annotation=Union[GitDocumentSourceSettings,</span> <span class="pre">PdfDocumentSourceSettings],</span> <span class="pre">required=True,</span> <span class="pre">discriminator='type'),</span> <span class="pre">'type':</span> <span class="pre">FieldInfo(annotation=ToolType,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_service">
+<span class="sig-name descname"><span class="pre">model_service</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ModelServiceType" title="ai_code_assistant.tools.interfaces.ModelServiceType"><span class="pre">ModelServiceType</span></a></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.model_service" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.of_git_source">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">of_git_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clone_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">embed_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bge-m3'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_service</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ModelServiceType" title="ai_code_assistant.tools.interfaces.ModelServiceType"><span class="pre">ModelServiceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ModelServiceType.OLLAMA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings" title="ai_code_assistant.tools.interfaces.RetrieverToolSettings"><span class="pre">RetrieverToolSettings</span></a></span></span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.of_git_source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.RetrieverToolSettings.source">
+<span class="sig-name descname"><span class="pre">source</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.GitDocumentSourceSettings" title="ai_code_assistant.tools.interfaces.GitDocumentSourceSettings"><span class="pre">GitDocumentSourceSettings</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings" title="ai_code_assistant.tools.interfaces.PdfDocumentSourceSettings"><span class="pre">PdfDocumentSourceSettings</span></a></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings.source" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">ToolSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolType" title="ai_code_assistant.tools.interfaces.ToolType"><span class="pre">ToolType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.enabled">
+<span class="sig-name descname"><span class="pre">enabled</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.enabled" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.model_computed_fields" title="Link to this definition">¶</a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">ConfigDict</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.model_config" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">FieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'enabled':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=True),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'type':</span> <span class="pre">FieldInfo(annotation=ToolType,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.model_fields" title="Link to this definition">¶</a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolSettings.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolType" title="ai_code_assistant.tools.interfaces.ToolType"><span class="pre">ToolType</span></a></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolSettings.type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.interfaces.</span></span><span class="sig-name descname"><span class="pre">ToolType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolType.BUILTIN">
+<span class="sig-name descname"><span class="pre">BUILTIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'builtin'</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolType.BUILTIN" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.interfaces.ToolType.RETRIEVER">
+<span class="sig-name descname"><span class="pre">RETRIEVER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'retriever'</span></em><a class="headerlink" href="#ai_code_assistant.tools.interfaces.ToolType.RETRIEVER" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ai_code_assistant.tools.retriever_tool">
+<span id="ai-code-assistant-tools-retriever-tool-module"></span><h2>ai_code_assistant.tools.retriever_tool module<a class="headerlink" href="#module-ai_code_assistant.tools.retriever_tool" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.retriever_tool.RetrieverTool">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.retriever_tool.</span></span><span class="sig-name descname"><span class="pre">RetrieverTool</span></span><a class="headerlink" href="#ai_code_assistant.tools.retriever_tool.RetrieverTool" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.retriever_tool.RetrieverTool.create_tool_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_tool_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_setting</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings" title="ai_code_assistant.tools.interfaces.RetrieverToolSettings"><span class="pre">RetrieverToolSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.common.html#ai_code_assistant.common.app_context.AppContext" title="ai_code_assistant.common.app_context.AppContext"><span class="pre">AppContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BaseTool</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.retriever_tool.RetrieverTool.create_tool_async" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.retriever_tool.RetrieverTool.load_tool_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_tool_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings" title="ai_code_assistant.tools.interfaces.RetrieverToolSettings"><span class="pre">RetrieverToolSettings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.common.html#ai_code_assistant.common.app_context.AppContext" title="ai_code_assistant.common.app_context.AppContext"><span class="pre">AppContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BaseTool</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.retriever_tool.RetrieverTool.load_tool_async" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.retriever_tool.RetrieverTool.remove_tool_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tool_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.common.html#ai_code_assistant.common.app_context.AppContext" title="ai_code_assistant.common.app_context.AppContext"><span class="pre">AppContext</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.RetrieverToolSettings" title="ai_code_assistant.tools.interfaces.RetrieverToolSettings"><span class="pre">RetrieverToolSettings</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.retriever_tool.RetrieverTool.remove_tool_async" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ai_code_assistant.tools.tool_settings_manager">
+<span id="ai-code-assistant-tools-tool-settings-manager-module"></span><h2>ai_code_assistant.tools.tool_settings_manager module<a class="headerlink" href="#module-ai_code_assistant.tools.tool_settings_manager" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.tools.tool_settings_manager.</span></span><span class="sig-name descname"><span class="pre">ToolSettingsManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.common.html#ai_code_assistant.common.app_context.AppContext" title="ai_code_assistant.common.app_context.AppContext"><span class="pre">AppContext</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tool settings manager.
+- Manage enabling and disabling of multiple tools
+- Save tool settings to json file.
+- Read settings file and load tools</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.load_tool_settings">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_tool_settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.load_tool_settings" title="Link to this definition">¶</a></dt>
+<dd><p>Load tool settings from the given directory path.
+Returns:</p>
+<blockquote>
+<div><p>List of tool settings.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.remove_tool_setting">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_tool_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></span></span><a class="headerlink" href="#ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.remove_tool_setting" title="Link to this definition">¶</a></dt>
+<dd><p>Remove tool settings.
+Args:</p>
+<blockquote>
+<div><p>tool_name: Tool name.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Removed tool settings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.save_tool_setting">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save_tool_setting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.tools.tool_settings_manager.ToolSettingsManager.save_tool_setting" title="Link to this definition">¶</a></dt>
+<dd><p>Save tool settings to json file.
+Args:</p>
+<blockquote>
+<div><p>tool: Tool settings.</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ai_code_assistant.tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ai_code_assistant.tools" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">ai-code-assistant</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../HowToUse.html">How To Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SoftwareSpecification.html">Software Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design.html">Software Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Memo.html">Memo for development.</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="ai_code_assistant.html">ai_code_assistant package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+  <li><a href="ai_code_assistant.html">ai_code_assistant package</a><ul>
+      <li>Previous: <a href="ai_code_assistant.llm.html" title="previous chapter">ai_code_assistant.llm package</a></li>
+      <li>Next: <a href="ai_code_assistant.utils.html" title="next chapter">ai_code_assistant.utils package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, LongbowXXX.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/api/ai_code_assistant.tools.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
