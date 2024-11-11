@@ -13,6 +13,14 @@ OPENAI_CHAT_MODEL = Literal["gpt-4o"]
 
 
 class LlmConfig(BaseModel):
+    """
+    Configuration class for the Language Model (LLM).
+
+    Attributes:
+        llm_provider: The provider of the language model. Default is 'ollama'.
+        llm_model: The specific model of the language model. Default is 'llama3.1'.
+    """
+
     llm_provider: LLM_PROVIDER = "ollama"
     llm_model: str = "llama3.1"
     # llm_provider: LLM_PROVIDER = "openai"
@@ -20,11 +28,26 @@ class LlmConfig(BaseModel):
 
     @staticmethod
     def load_from_file(dir_path: Path) -> "LlmConfig":
+        """
+        Loads the LLM configuration from a JSON file.
+
+        Args:
+            dir_path: The directory path where the configuration file is located.
+
+        Returns:
+            The loaded LLM configuration.
+        """
         file = dir_path / "llm_config.json"
         if file.exists():
             return LlmConfig.model_validate_json(file.read_text(encoding="utf-8"))
         return LlmConfig()
 
     def save_to_file(self, dir_path: Path) -> None:
+        """
+        Saves the LLM configuration to a JSON file.
+
+        Args:
+            dir_path: The directory path where the configuration file will be saved.
+        """
         file = dir_path / "llm_config.json"
         file.write_text(self.model_dump_json(), encoding="utf-8")

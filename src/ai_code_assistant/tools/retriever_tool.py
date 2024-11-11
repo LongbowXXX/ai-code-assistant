@@ -26,8 +26,22 @@ logger = logging.getLogger(basename(__name__))
 
 
 class RetrieverTool:
+    """
+    A class to represent a retriever tool that loads and processes documents from various sources.
+    """
+
     @classmethod
     async def create_tool_async(cls, tool_setting: RetrieverToolSettings, app_context: AppContext) -> BaseTool:
+        """
+        Asynchronously creates a retriever tool based on the provided settings and application context.
+
+        Args:
+            tool_setting: The settings for the retriever tool.
+            app_context: The application context.
+
+        Returns:
+            The created retriever tool.
+        """
         logger.info(f"creating tool tool_setting={tool_setting}")
         source = tool_setting.source
         documents: list[Document]
@@ -43,6 +57,16 @@ class RetrieverTool:
 
     @classmethod
     async def load_tool_async(cls, tool_settings: RetrieverToolSettings, app_context: AppContext) -> BaseTool:
+        """
+        Asynchronously loads a retriever tool from persistent storage.
+
+        Args:
+            tool_settings: The settings for the retriever tool.
+            app_context: The application context.
+
+        Returns:
+            The loaded retriever tool.
+        """
         logger.info(f"Load tool tool_settings={tool_settings}")
         persistent_directory = app_context.db_dir / tool_settings.name
         vector_store: VectorStore = Chroma(
@@ -60,6 +84,13 @@ class RetrieverTool:
 
     @classmethod
     async def remove_tool_async(cls, app_context: AppContext, tool_settings: RetrieverToolSettings) -> None:
+        """
+        Asynchronously removes a retriever tool and its associated data from persistent storage.
+
+        Args:
+            app_context: The application context.
+            tool_settings: The settings for the retriever tool to be removed.
+        """
         logger.info(f"Remove tool tool_settings={tool_settings}")
         persistent_directory = app_context.db_dir / tool_settings.name
         remove_dir_contents(persistent_directory)

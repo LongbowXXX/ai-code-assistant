@@ -22,15 +22,37 @@ logger = logging.getLogger(basename(__name__))
 
 
 class AiTools:
+    """
+    Manages the creation, loading, and removal of AI tools.
+    """
+
     def __init__(
         self,
         app_context: AppContext = AppContext(),
     ) -> None:
+        """
+        Initializes the AiTools class with the given application context.
+
+        Args:
+            app_context: The application context. Defaults to a new instance of AppContext.
+        """
         super().__init__()
         self._app_context = app_context
         self._setting_manager = ToolSettingsManager(AppContext())
 
     async def create_tool_async(self, tool_settings: ToolSettings) -> BaseTool:
+        """
+        Asynchronously creates a tool based on the provided settings.
+
+        Args:
+            tool_settings: The settings for the tool to be created.
+
+        Returns:
+            The created tool.
+
+        Raises:
+            NotImplementedError: If the tool type is not supported.
+        """
         logger.info(f"create_tool_async() tool_settings={tool_settings}")
         match tool_settings.type:
             case "retriever":
@@ -45,11 +67,26 @@ class AiTools:
         return tool
 
     async def load_tools_async(self) -> list[AiTool]:
+        """
+        Asynchronously loads all tools based on the saved settings.
+
+        Returns:
+            A list of loaded tools.
+        """
         logger.info("load_tools_async()")
         tool_settings = await self._setting_manager.load_tool_settings()
         return [await self._load_tool_async(self._app_context, tool_settings) for tool_settings in tool_settings]
 
     async def remove_tool_setting(self, tool_name: str) -> ToolSettings:
+        """
+        Asynchronously removes the settings for a tool with the given name.
+
+        Args:
+            tool_name: The name of the tool to remove.
+
+        Returns:
+            The settings of the removed tool.
+        """
         logger.info(f"remove_tool_setting() tool_name={tool_name}")
         removed = await self._setting_manager.remove_tool_setting(tool_name)
         return removed

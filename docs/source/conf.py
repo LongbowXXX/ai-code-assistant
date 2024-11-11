@@ -10,10 +10,10 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("./api"))
-
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+
+sys.path.insert(0, os.path.abspath("../"))
 
 project = "ai-code-assistant"
 copyright = "2024, LongbowXXX"
@@ -23,9 +23,10 @@ author = "LongbowXXX"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "myst_parser",
+    # "myst_parser",
     "sphinxcontrib.mermaid",
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
 ]
 
 templates_path = ["_templates"]
