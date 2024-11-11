@@ -1,6 +1,6 @@
 [project]
 name = "ai_code_assistant"
-version = "0.1.0"
+version = "0.1.1"
 description = "LongbowXXX's ai code assistant."
 authors = [
     { name = "LongbowXXX" },
