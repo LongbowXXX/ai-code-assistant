@@ -60,7 +60,7 @@ def update_state_if_needed(ai_assistant: AiAssistantModel) -> None:
 def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
     update_state_if_needed(ai_assistant())
     state = me.state(ToolState)
-    logger.info(f"tool_settings_ui() {state}")
+    # logger.info(f"tool_settings_ui() {state}")
     # Modal
     with me.box(style=_STYLE_MODAL_CONTAINER):
         with me.box(style=_STYLE_MODAL_CONTENT):
@@ -119,6 +119,25 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
                 )
 
             with me.box(style=_CONTENT_GROUP):
+                me.input(
+                    label="Source Name (Only letters, numbers and _ are allowed.)",
+                    appearance="outline",
+                    style=_STYLE_INPUT_WIDTH,
+                    value=state.pdf_source_name,
+                    on_blur=on_pdf_name_blur,
+                )
+                with me.content_uploader(
+                    accepted_file_types=["pdf/pdf"],
+                    on_upload=lambda event: handle_upload(event, ai_assistant()),
+                    type="flat",
+                    color="primary",
+                    style=me.Style(font_weight="bold"),
+                ):
+                    with me.box(style=me.Style(display="flex", gap=5)):
+                        me.icon("upload")
+                        me.text("Add (Simple) PDF for Retriever", style=me.Style(line_height="25px"))
+
+            with me.box(style=_CONTENT_GROUP):
                 me.text("Builtin-tools")
                 me.button(
                     "Add Google Search",
@@ -145,6 +164,12 @@ def tool_settings_ui(ai_assistant: Callable[[], AiAssistantModel]) -> None:
             )
 
 
+async def handle_upload(event: me.UploadEvent, assistant: AiAssistantModel) -> None:
+    state = me.state(ToolState)
+    all_data = event.file.read(event.file.size)
+    await assistant.add_pdf_source(state.pdf_source_name, all_data)
+
+
 def on_clone_url_blur(e: me.InputBlurEvent) -> None:
     state = me.state(ToolState)
     state.git_clone_url = e.value
@@ -153,6 +178,11 @@ def on_clone_url_blur(e: me.InputBlurEvent) -> None:
 def on_source_name_blur(e: me.InputBlurEvent) -> None:
     state = me.state(ToolState)
     state.git_source_name = e.value
+
+
+def on_pdf_name_blur(e: me.InputBlurEvent) -> None:
+    state = me.state(ToolState)
+    state.pdf_source_name = e.value
 
 
 def on_branch_blur(e: me.InputBlurEvent) -> None:

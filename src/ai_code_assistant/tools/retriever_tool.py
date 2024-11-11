@@ -8,7 +8,6 @@ from pathlib import Path
 
 from langchain_chroma import Chroma
 from langchain_community.document_loaders import GitLoader, PyPDFLoader
-
 from langchain_core.documents import Document
 from langchain_core.tools import BaseTool, create_retriever_tool
 from langchain_core.vectorstores import VectorStore
@@ -90,6 +89,7 @@ class RetrieverTool:
     ) -> list[Document]:
         loader = PyPDFLoader(source.file_path)
         documents = await loader.aload()
+        logger.info(f"Loading PDF documents from {source.file_path}\n{documents}")
         return RecursiveCharacterTextSplitter().split_documents(documents)
 
     @classmethod

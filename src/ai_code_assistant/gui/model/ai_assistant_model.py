@@ -4,6 +4,8 @@
 #  http://opensource.org/licenses/mit-license.php
 import asyncio
 import logging
+import os
+import tempfile
 from os.path import basename
 from typing import Generator, AsyncGenerator
 
@@ -80,6 +82,18 @@ class AiAssistantModel:
     async def add_google_search(self) -> None:
         await self._ai_tools.create_tool_async(ToolSettings(type=ToolType.BUILTIN, name="google-search", enabled=True))
         await self.update_assistant(self._llm_config)
+
+    async def add_pdf_source(self, source_name: str, content: bytes) -> None:
+        file = tempfile.NamedTemporaryFile(delete=False, suffix=".pdf")
+        file.write(content)
+        file.close()
+        file_path = file.name
+        logger.info(f"add_pdf_source() : {source_name} : {file_path}")
+        await self._ai_tools.create_tool_async(
+            RetrieverToolSettings.of_pdf_source(source_name=source_name, file_path=file_path)
+        )
+        await self.update_assistant(self._llm_config)
+        os.unlink(file_path)
 
     async def add_git_source(self, source_name: str, clone_url: str, branch: str) -> None:
         await self._ai_tools.create_tool_async(
