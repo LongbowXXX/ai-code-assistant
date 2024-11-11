@@ -1,8 +1,3 @@
-#  Copyright (c) 2024 LongbowXXX
-#
-#  This software is released under the MIT License.
-#  http://opensource.org/licenses/mit-license.php
-
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -10,31 +5,32 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("./api"))
-
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "ai-code-assistant"
-copyright = "2024, LongbowXXX"
-author = "LongbowXXX"
+sys.path.insert(0, os.path.abspath('../'))
+
+project = 'ai-code-assistant'
+copyright = '2024, LongbowXXX'
+author = 'LongbowXXX'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "myst_parser",
+    # "myst_parser",
     "sphinxcontrib.mermaid",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
 ]
 
-templates_path = ["_templates"]
-exclude_patterns: list[str] = []
+templates_path = ['_templates']
+exclude_patterns = []
+
 
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "alabaster"
-html_static_path = ["_static"]
+html_theme = 'alabaster'
+html_static_path = ['_static']
