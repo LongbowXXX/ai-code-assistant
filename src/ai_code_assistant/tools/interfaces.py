@@ -44,6 +44,28 @@ class RetrieverToolSettings(ToolSettings):
     model_config = ConfigDict(protected_namespaces=())
 
     @classmethod
+    def of_pdf_source(
+        cls,
+        *,
+        source_name: str,
+        file_path: str,
+        embed_model: str = "bge-m3",
+        model_service: ModelServiceType = ModelServiceType.OLLAMA,
+    ) -> "RetrieverToolSettings":
+        return RetrieverToolSettings(
+            name=source_name,
+            type=ToolType.RETRIEVER,
+            enabled=True,
+            description=f"{source_name} PDF retriever",
+            embedding_model=embed_model,
+            model_service=model_service,
+            source=PdfDocumentSourceSettings(
+                type="pdf",
+                file_path=file_path,
+            ),
+        )
+
+    @classmethod
     def of_git_source(
         cls,
         *,

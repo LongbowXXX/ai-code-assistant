@@ -2,6 +2,7 @@
 #
 #  This software is released under the MIT License.
 #  http://opensource.org/licenses/mit-license.php
+
 import mesop as me
 
 
@@ -11,5 +12,6 @@ class ToolState:
     git_clone_url: str = "https://github.com/LongbowXXX/ai-code-assistant"
     git_branch: str = "develop"
     git_source_name: str = "ai_code_assistant"
+    pdf_source_name: str = ""
     llm_provider: str = ""
     llm_model: str = ""
