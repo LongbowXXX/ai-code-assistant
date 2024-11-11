@@ -36,6 +36,11 @@ def ai_assistant() -> AiAssistantModel:
     security_policy=me.SecurityPolicy(dangerously_disable_trusted_types=True),
 )  # type: ignore[misc]
 def main_page() -> None:
+    """
+    Renders the main page of the AI Code Assistant application.
+
+    This page includes the chat UI for interacting with the AI Assistant.
+    """
     chat_ui(
         transform,
         title="AI Code Assistant",
@@ -49,10 +54,26 @@ def main_page() -> None:
     security_policy=me.SecurityPolicy(dangerously_disable_trusted_types=True),
 )  # type: ignore[misc]
 def tool_settings_page() -> None:
+    """
+    Renders the tool settings page of the AI Code Assistant application.
+
+    This page includes the UI for configuring tool settings.
+    """
     tool_settings_ui(ai_assistant)
 
 
 def transform(sentence: str, system_prompt: str, history: list[ChatUiMessage]) -> Generator[str, None, None]:
+    """
+    Transforms the user input into a response from the AI Assistant.
+
+    Args:
+        sentence: The user input sentence.
+        system_prompt: The system prompt to guide the AI Assistant.
+        history: The history of chat messages.
+
+    Yields:
+        The response from the AI Assistant.
+    """
     if not history:
         ai_assistant_model.clear_history()
     ai_assistant_model.system = system_prompt

@@ -1,5 +1,9 @@
 AI Code Assistant Change Log
 ===
+## [0.1.1]
+### Fixed
+- GitHubPage index page. 
+
 ## [0.1.0]
 ### Added
 - Support PDF Retrieve
