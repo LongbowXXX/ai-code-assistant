@@ -37,8 +37,8 @@
 <h1>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">¶</a></h1>
 <p>Create an app/IDE plugin that assists with coding using LLM.</p>
 <ul class="simple">
-<li><p>Assist in implementing source code</p>
-<ul>
+<li><dl class="simple">
+<dt>Assist in implementing source code</dt><dd><ul>
 <li><p>TODO, FIXME implementation</p></li>
 <li><p>Code explanation</p></li>
 <li><p>Add comments</p></li>
@@ -46,52 +46,68 @@
 <li><p>Improve code</p></li>
 <li><p>Code review</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 <li><p>Select the source code to be advised</p></li>
-<li><p>Refer to other files during advice</p>
-<ul>
+<li><dl class="simple">
+<dt>Refer to other files during advice</dt><dd><ul>
 <li><p>Embed source code and enable search by cosine similarity</p></li>
 <li><p>Refer to related files by class name, function name, etc.</p></li>
 <li><p>Specify files to refer to explicitly</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p>Refer to non-source code files</p>
-<ul>
+<li><dl class="simple">
+<dt>Refer to non-source code files</dt><dd><ul>
 <li><p>web site</p></li>
 <li><p>pdf files</p></li>
 <li><p>image files</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p>Understand usage fees</p>
-<ul>
+<li><dl class="simple">
+<dt>Understand usage fees</dt><dd><ul>
 <li><p>Know the number of tokens for Chat/Embedding</p></li>
 <li><p>Set a table for token/fee conversion</p></li>
 <li><p>Use free models available on Ollama</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p>Use Python for the core part of the app to keep up with the evolution of LLM</p>
-<ul>
+<li><dl class="simple">
+<dt>Use Python for the core part of the app to keep up with the evolution of LLM</dt><dd><ul>
 <li><p>Can be used as a coding assistant app with Python alone</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p>Can be used as an IDE plugin</p>
-<ul>
-<li><p>Target IntelliJ/PyCharm</p>
-<ul>
+<li><dl class="simple">
+<dt>Can be used as an IDE plugin</dt><dd><ul>
+<li><dl class="simple">
+<dt>Target IntelliJ/PyCharm</dt><dd><ul>
 <li><p>The implementation language of the IntelliJ/PyCharm plugin is Kotlin</p></li>
 <li><p>To call Python from Kotlin, the core on the Python side supports CLI</p></li>
 <li><p>Call CLI from the plugin</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p>Select the LLM to use</p>
-<ul>
+<li><dl class="simple">
+<dt>Select the LLM to use</dt><dd><ul>
 <li><p>OpenAI</p></li>
 <li><p>Amazon Bedrock Claude3</p></li>
 <li><p>Google Gemini Pro</p></li>
 <li><p>Ollama</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 <li><p>Support advanced responses using multiple LLMs in an ensemble</p></li>
 </ul>
@@ -129,7 +145,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SoftwareSpecification.html">Software Specification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/modules.html">src</a></li>
 </ul>
 
@@ -162,7 +178,7 @@
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="_sources/Requirements.md.txt"
+      <a href="_sources/Requirements.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

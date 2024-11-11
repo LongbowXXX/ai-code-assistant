@@ -41,195 +41,210 @@
 </section>
 <section id="functional-requirements">
 <h2>2. Functional Requirements<a class="headerlink" href="#functional-requirements" title="Link to this heading">¶</a></h2>
-<section id="coding-assistant-features">
-<h3>2.1 Coding Assistant Features<a class="headerlink" href="#coding-assistant-features" title="Link to this heading">¶</a></h3>
+<p>2.1 Coding Assistant Features</p>
 <ul class="simple">
-<li><p><strong>TODO, FIXME Implementation Assistance</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>TODO, FIXME Implementation Assistance</strong></dt><dd><ul>
 <li><p>Detect TODO and FIXME comments and suggest implementation ideas.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Code Explanation</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Code Explanation</strong></dt><dd><ul>
 <li><p>Provide explanations for selected source code.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Comment Addition</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Comment Addition</strong></dt><dd><ul>
 <li><p>Automatically generate appropriate comments for the source code.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Test Creation</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Test Creation</strong></dt><dd><ul>
 <li><p>Automatically generate unit tests and other test cases for the source code.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Code Improvement</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Code Improvement</strong></dt><dd><ul>
 <li><p>Suggest improvements for existing code.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Code Review</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Code Review</strong></dt><dd><ul>
 <li><p>Review the source code and point out improvements and potential issues.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="source-code-selection">
-<h3>2.2 Source Code Selection<a class="headerlink" href="#source-code-selection" title="Link to this heading">¶</a></h3>
+<p>2.2 Source Code Selection</p>
 <ul class="simple">
-<li><p><strong>Selectable Source Code for Advice</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Selectable Source Code for Advice</strong></dt><dd><ul>
 <li><p>Provide an interface for users to select the source code they want advice on.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="reference-function-for-other-files">
-<h3>2.3 Reference Function for Other Files<a class="headerlink" href="#reference-function-for-other-files" title="Link to this heading">¶</a></h3>
+<p>2.3 Reference Function for Other Files</p>
 <ul class="simple">
-<li><p><strong>File Reference</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>File Reference</strong></dt><dd><ul>
 <li><p>Embed the source code and search for related files using cosine similarity.</p></li>
 <li><p>Automatically reference related files by class name and function name.</p></li>
 <li><p>Allow explicit specification of reference files.</p></li>
-<li><p>Reference files other than source code.</p>
-<ul>
+<li><dl class="simple">
+<dt>Reference files other than source code.</dt><dd><ul>
 <li><p>Websites</p></li>
 <li><p>PDF files</p></li>
 <li><p>Image files</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="visualization-of-usage-fees">
-<h3>2.4 Visualization of Usage Fees<a class="headerlink" href="#visualization-of-usage-fees" title="Link to this heading">¶</a></h3>
+<p>2.4 Visualization of Usage Fees</p>
 <ul class="simple">
-<li><p><strong>Display Token Count</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Display Token Count</strong></dt><dd><ul>
 <li><p>Display the token count for Chat and Embedding.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Fee Conversion Table Setting</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Fee Conversion Table Setting</strong></dt><dd><ul>
 <li><p>Provide a function to set a table for converting token count to fees.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
 </section>
 <section id="technical-requirements">
 <h2>3. Technical Requirements<a class="headerlink" href="#technical-requirements" title="Link to this heading">¶</a></h2>
-<section id="core-part">
-<h3>3.1 Core Part<a class="headerlink" href="#core-part" title="Link to this heading">¶</a></h3>
+<p>3.1 Core Part</p>
 <ul class="simple">
-<li><p><strong>Python</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Python</strong></dt><dd><ul>
 <li><p>Implement the core part of the coding assistance application in Python.</p></li>
 <li><p>Make the application usable as a standalone Python application.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="ide-plugin">
-<h3>3.2 IDE Plugin<a class="headerlink" href="#ide-plugin" title="Link to this heading">¶</a></h3>
+<p>3.2 IDE Plugin</p>
 <ul class="simple">
-<li><p><strong>Target IDE</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Target IDE</strong></dt><dd><ul>
 <li><p>Provide plugins for IntelliJ and PyCharm.</p></li>
 <li><p>Implement the plugin in Kotlin.</p></li>
 <li><p>Ensure the Python core can be called from Kotlin, with the core supporting CLI.</p></li>
 <li><p>Provide functionality by calling the CLI from the plugin.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="llm-selection">
-<h3>3.3 LLM Selection<a class="headerlink" href="#llm-selection" title="Link to this heading">¶</a></h3>
+<p>3.3 LLM Selection</p>
 <ul class="simple">
-<li><p><strong>Supported LLMs</strong></p>
-<ul>
-<li><p>Allow selection of the LLM to use.</p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Supported LLMs</strong></dt><dd><ul>
+<li><dl class="simple">
+<dt>Allow selection of the LLM to use.</dt><dd><ul>
 <li><p>OpenAI</p></li>
 <li><p>Amazon Bedrock Claude3</p></li>
 <li><p>Google Gemini Pro</p></li>
 <li><p>Ollama</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Ensemble Response</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Ensemble Response</strong></dt><dd><ul>
 <li><p>Provide advanced responses using an ensemble of multiple LLMs.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
 </section>
 <section id="non-functional-requirements">
 <h2>4. Non-functional Requirements<a class="headerlink" href="#non-functional-requirements" title="Link to this heading">¶</a></h2>
-<section id="usability">
-<h3>4.1 Usability<a class="headerlink" href="#usability" title="Link to this heading">¶</a></h3>
+<p>4.1 Usability</p>
 <ul class="simple">
-<li><p><strong>Intuitive Interface</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Intuitive Interface</strong></dt><dd><ul>
 <li><p>Provide a UI/UX that users can operate intuitively.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="performance">
-<h3>4.2 Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h3>
+<p>4.2 Performance</p>
 <ul class="simple">
-<li><p><strong>Response Time</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Response Time</strong></dt><dd><ul>
 <li><p>Optimize the response time of the coding assistance features to not hinder user work.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="maintainability">
-<h3>4.3 Maintainability<a class="headerlink" href="#maintainability" title="Link to this heading">¶</a></h3>
+<p>4.3 Maintainability</p>
 <ul class="simple">
-<li><p><strong>Adaptation to LLM Evolution</strong></p>
-<ul>
-<li><p>Design the core part in Python to flexibly adapt to the evolution of LLMs.</p></li>
+<li><p><strong>Adaptation to LLM Evolution</strong>
+- Design the core part in Python to flexibly adapt to the evolution of LLMs.</p></li>
 </ul>
-</li>
-</ul>
-</section>
 </section>
 <section id="supplementary-information">
 <h2>5. Supplementary Information<a class="headerlink" href="#supplementary-information" title="Link to this heading">¶</a></h2>
-<section id="interface">
-<h3>5.1 Interface<a class="headerlink" href="#interface" title="Link to this heading">¶</a></h3>
+<p>5.1 Interface</p>
 <ul class="simple">
-<li><p><strong>GUI</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>GUI</strong></dt><dd><ul>
 <li><p>Provide a GUI that integrates features such as source code selection, file reference, and fee display.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
-<section id="documentation">
-<h3>5.2 Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h3>
+<p>5.2 Documentation</p>
 <ul class="simple">
-<li><p><strong>User Manual</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>User Manual</strong></dt><dd><ul>
 <li><p>Provide a user manual that includes installation steps, usage methods, and FAQs.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
-<li><p><strong>Developer Documentation</strong></p>
-<ul>
+<li><dl class="simple">
+<dt><strong>Developer Documentation</strong></dt><dd><ul>
 <li><p>Provide technical documentation that includes API specifications for the core part and plugin development methods.</p></li>
 </ul>
+</dd>
+</dl>
 </li>
 </ul>
-</section>
 </section>
 </section>
 
@@ -272,7 +287,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/modules.html">src</a></li>
 </ul>
 
@@ -305,7 +320,7 @@
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="_sources/SoftwareSpecification.md.txt"
+      <a href="_sources/SoftwareSpecification.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 
