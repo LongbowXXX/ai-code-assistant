@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ai_code_assistant.gui package &#8212; ai-code-assistant  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ai_code_assistant.gui.model package" href="ai_code_assistant.gui.model.html" />
     <link rel="prev" title="ai_code_assistant.common package" href="ai_code_assistant.common.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
 
   
@@ -100,31 +100,87 @@
 <span id="ai-code-assistant-gui-chat-state-module"></span><h2>ai_code_assistant.gui.chat_state module<a class="headerlink" href="#module-ai_code_assistant.gui.chat_state" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.chat_state.</span></span><span class="sig-name descname"><span class="pre">ChatState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_input:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'You</span> <span class="pre">are</span> <span class="pre">a</span> <span class="pre">coding</span> <span class="pre">assistant.\nExamine</span> <span class="pre">the</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">and</span> <span class="pre">answer</span> <span class="pre">user</span> <span class="pre">questions.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt_tab:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_history:</span> <span class="pre">list[ai_code_assistant.gui.chat_state.ChatUiMessage]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_progress:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.chat_state.</span></span><span class="sig-name descname"><span class="pre">ChatState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_input:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'You</span> <span class="pre">are</span> <span class="pre">a</span> <span class="pre">coding</span> <span class="pre">assistant.\nExamine</span> <span class="pre">the</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">and</span> <span class="pre">answer</span> <span class="pre">user</span> <span class="pre">questions.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt_tab:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_history:</span> <span class="pre">list[~ai_code_assistant.gui.chat_state.ChatUiMessage]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_progress:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the state of the chat UI.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.chat_history">
-<span class="sig-name descname"><span class="pre">chat_history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.gui.chat_state.ChatUiMessage" title="ai_code_assistant.gui.chat_state.ChatUiMessage"><span class="pre">ChatUiMessage</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.chat_history" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.in_progress">
-<span class="sig-name descname"><span class="pre">in_progress</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.in_progress" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.user_input">
+<span class="sig-name descname"><span class="pre">user_input</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.user_input" title="Link to this definition">¶</a></dt>
+<dd><p>The current input from the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.system_prompt">
-<span class="sig-name descname"><span class="pre">system_prompt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'You</span> <span class="pre">are</span> <span class="pre">a</span> <span class="pre">coding</span> <span class="pre">assistant.\nExamine</span> <span class="pre">the</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">and</span> <span class="pre">answer</span> <span class="pre">user</span> <span class="pre">questions.'</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.system_prompt" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">system_prompt</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.system_prompt" title="Link to this definition">¶</a></dt>
+<dd><p>The system prompt displayed to the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.system_prompt_tab">
-<span class="sig-name descname"><span class="pre">system_prompt_tab</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.system_prompt_tab" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">system_prompt_tab</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.system_prompt_tab" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the system prompt tab is active.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.chat_history">
+<span class="sig-name descname"><span class="pre">chat_history</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.chat_history" title="Link to this definition">¶</a></dt>
+<dd><p>The history of chat messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#ai_code_assistant.gui.chat_state.ChatUiMessage" title="ai_code_assistant.gui.chat_state.ChatUiMessage">ai_code_assistant.gui.chat_state.ChatUiMessage</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.in_progress">
+<span class="sig-name descname"><span class="pre">in_progress</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.in_progress" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if a chat operation is in progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">chat_history</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.gui.chat_state.ChatUiMessage" title="ai_code_assistant.gui.chat_state.ChatUiMessage"><span class="pre">ChatUiMessage</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatState.user_input">
-<span class="sig-name descname"><span class="pre">user_input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatState.user_input" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">in_progress</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">system_prompt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'You</span> <span class="pre">are</span> <span class="pre">a</span> <span class="pre">coding</span> <span class="pre">assistant.\nExamine</span> <span class="pre">the</span> <span class="pre">source</span> <span class="pre">code</span> <span class="pre">and</span> <span class="pre">answer</span> <span class="pre">user</span> <span class="pre">questions.'</span></em><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">system_prompt_tab</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">user_input</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -133,14 +189,37 @@
 <dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatUiMessage">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.chat_state.</span></span><span class="sig-name descname"><span class="pre">ChatUiMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'user'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'assistant'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'user'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatUiMessage" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a message in the chat UI.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatUiMessage.role">
+<span class="sig-name descname"><span class="pre">role</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatUiMessage.role" title="Link to this definition">¶</a></dt>
+<dd><p>The role of the message sender, either ‘user’ or ‘assistant’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Literal[‘user’, ‘assistant’]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatUiMessage.content">
-<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatUiMessage.content" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">content</span></span><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatUiMessage.content" title="Link to this definition">¶</a></dt>
+<dd><p>The content of the message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.chat_state.ChatUiMessage.role">
-<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'user'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'assistant'</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#ai_code_assistant.gui.chat_state.ChatUiMessage.role" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">role</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'user'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'assistant'</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'user'</span></em><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -156,17 +235,34 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.gui_app.main_page">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.gui_app.</span></span><span class="sig-name descname"><span class="pre">main_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.gui.gui_app.main_page" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Renders the main page of the AI Code Assistant application.</p>
+<p>This page includes the chat UI for interacting with the AI Assistant.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.gui_app.tool_settings_page">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.gui_app.</span></span><span class="sig-name descname"><span class="pre">tool_settings_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.gui.gui_app.tool_settings_page" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Renders the tool settings page of the AI Code Assistant application.</p>
+<p>This page includes the UI for configuring tool settings.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.gui_app.transform">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.gui_app.</span></span><span class="sig-name descname"><span class="pre">transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sentence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">history</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.gui.chat_state.ChatUiMessage" title="ai_code_assistant.gui.chat_state.ChatUiMessage"><span class="pre">ChatUiMessage</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ai_code_assistant.gui.gui_app.transform" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Transforms the user input into a response from the AI Assistant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sentence</strong> – The user input sentence.</p></li>
+<li><p><strong>system_prompt</strong> – The system prompt to guide the AI Assistant.</p></li>
+<li><p><strong>history</strong> – The history of chat messages.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response from the AI Assistant.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-ai_code_assistant.gui.tool_state">
@@ -175,39 +271,117 @@
 <dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.tool_state.</span></span><span class="sig-name descname"><span class="pre">ToolState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initialized</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">git_clone_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'https://github.com/LongbowXXX/ai-code-assistant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">git_branch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'develop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">git_source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ai_code_assistant'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_source_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm_provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the state of the tool settings.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.git_branch">
-<span class="sig-name descname"><span class="pre">git_branch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'develop'</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_branch" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.initialized">
+<span class="sig-name descname"><span class="pre">initialized</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.initialized" title="Link to this definition">¶</a></dt>
+<dd><p>Indicates if the tool has been initialized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.git_clone_url">
-<span class="sig-name descname"><span class="pre">git_clone_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://github.com/LongbowXXX/ai-code-assistant'</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_clone_url" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">git_clone_url</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_clone_url" title="Link to this definition">¶</a></dt>
+<dd><p>The URL of the Git repository to clone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.git_branch">
+<span class="sig-name descname"><span class="pre">git_branch</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_branch" title="Link to this definition">¶</a></dt>
+<dd><p>The branch of the Git repository to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.git_source_name">
-<span class="sig-name descname"><span class="pre">git_source_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ai_code_assistant'</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_source_name" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.initialized">
-<span class="sig-name descname"><span class="pre">initialized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.initialized" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.llm_model">
-<span class="sig-name descname"><span class="pre">llm_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.llm_model" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.llm_provider">
-<span class="sig-name descname"><span class="pre">llm_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.llm_provider" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">git_source_name</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.git_source_name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the source for the Git repository.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.pdf_source_name">
-<span class="sig-name descname"><span class="pre">pdf_source_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.pdf_source_name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pdf_source_name</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.pdf_source_name" title="Link to this definition">¶</a></dt>
+<dd><p>The name of the source for PDF files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.llm_provider">
+<span class="sig-name descname"><span class="pre">llm_provider</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.llm_provider" title="Link to this definition">¶</a></dt>
+<dd><p>The provider of the large language model (LLM).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.gui.tool_state.ToolState.llm_model">
+<span class="sig-name descname"><span class="pre">llm_model</span></span><a class="headerlink" href="#ai_code_assistant.gui.tool_state.ToolState.llm_model" title="Link to this definition">¶</a></dt>
+<dd><p>The specific model of the LLM to use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">git_branch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'develop'</span></em><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">git_clone_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://github.com/LongbowXXX/ai-code-assistant'</span></em><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">git_source_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ai_code_assistant'</span></em><a class="headerlink" href="#id9" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">initialized</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#id10" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">llm_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id11" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">llm_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id12" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">pdf_source_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#id13" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -225,7 +399,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">ai-code-assistant</a></h1>
+<h1 class="logo"><a href="index.html">ai-code-assistant</a></h1>
 
 
 
@@ -237,7 +411,7 @@
 
 <search id="searchbox" style="display: none" role="search">
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
       <input type="submit" value="Go" />
     </form>
@@ -246,11 +420,11 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../HowToUse.html">How To Use</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftwareSpecification.html">Software Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Memo.html">Memo for development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareSpecification.html">Software Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ai_code_assistant.html">ai_code_assistant package</a></li>
 </ul>
@@ -260,7 +434,7 @@
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">src</a><ul>
   <li><a href="ai_code_assistant.html">ai_code_assistant package</a><ul>
       <li>Previous: <a href="ai_code_assistant.common.html" title="previous chapter">ai_code_assistant.common package</a></li>
@@ -290,7 +464,7 @@
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/api/ai_code_assistant.gui.rst.txt"
+      <a href="_sources/ai_code_assistant.gui.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

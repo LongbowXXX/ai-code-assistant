@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ai_code_assistant.gui.view package &#8212; ai-code-assistant  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ai_code_assistant.gui.view.tool_settings package" href="ai_code_assistant.gui.view.tool_settings.html" />
     <link rel="prev" title="ai_code_assistant.gui.model package" href="ai_code_assistant.gui.model.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
 
   
@@ -74,10 +74,13 @@
 <dt class="sig sig-object py" id="ai_code_assistant.gui.view.chat_page.chat_ui">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.view.chat_page.</span></span><span class="sig-name descname"><span class="pre">chat_ui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="ai_code_assistant.gui.html#ai_code_assistant.gui.chat_state.ChatUiMessage" title="ai_code_assistant.gui.chat_state.ChatUiMessage"><span class="pre">ChatUiMessage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Generator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bot_user</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.gui.view.chat_page.chat_ui" title="Link to this definition">¶</a></dt>
 <dd><p>Renders the chat UI component.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>transform: A function that processes the user input and returns the assistant’s response.
-title: The title of the chat UI.
-bot_user: The name of the bot user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transform</strong> – A function that processes the user input and returns the assistant’s response.</p></li>
+<li><p><strong>title</strong> – The title of the chat UI.</p></li>
+<li><p><strong>bot_user</strong> – The name of the bot user.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -111,8 +114,9 @@ bot_user: The name of the bot user.</p>
 <dt class="sig sig-object py" id="ai_code_assistant.gui.view.page_header.header">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.view.page_header.</span></span><span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Style</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.gui.view.page_header.header" title="Link to this definition">¶</a></dt>
 <dd><p>Creates a simple header component.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>style: Override the default styles, such as background color, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>style</strong> – Override the default styles, such as background color, etc.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -127,9 +131,12 @@ bot_user: The name of the bot user.</p>
 <dt class="sig sig-object py" id="ai_code_assistant.gui.view.page_header.merge_styles">
 <span class="sig-prename descclassname"><span class="pre">ai_code_assistant.gui.view.page_header.</span></span><span class="sig-name descname"><span class="pre">merge_styles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Style</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overrides</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Style</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Style</span></span></span><a class="headerlink" href="#ai_code_assistant.gui.view.page_header.merge_styles" title="Link to this definition">¶</a></dt>
 <dd><p>Merges two styles together.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>default: The starting style
-overrides: Any set styles will override styles in default</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default</strong> – The starting style</p></li>
+<li><p><strong>overrides</strong> – Any set styles will override styles in default</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -152,7 +159,7 @@ overrides: Any set styles will override styles in default</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">ai-code-assistant</a></h1>
+<h1 class="logo"><a href="index.html">ai-code-assistant</a></h1>
 
 
 
@@ -164,7 +171,7 @@ overrides: Any set styles will override styles in default</p>
 
 <search id="searchbox" style="display: none" role="search">
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
       <input type="submit" value="Go" />
     </form>
@@ -173,11 +180,11 @@ overrides: Any set styles will override styles in default</p>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../HowToUse.html">How To Use</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftwareSpecification.html">Software Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Memo.html">Memo for development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareSpecification.html">Software Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ai_code_assistant.html">ai_code_assistant package</a></li>
 </ul>
@@ -187,7 +194,7 @@ overrides: Any set styles will override styles in default</p>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">src</a><ul>
   <li><a href="ai_code_assistant.html">ai_code_assistant package</a><ul>
   <li><a href="ai_code_assistant.gui.html">ai_code_assistant.gui package</a><ul>
@@ -219,7 +226,7 @@ overrides: Any set styles will override styles in default</p>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/api/ai_code_assistant.gui.view.rst.txt"
+      <a href="_sources/ai_code_assistant.gui.view.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

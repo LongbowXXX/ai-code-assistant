@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ai_code_assistant.llm package &#8212; ai-code-assistant  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ai_code_assistant.tools package" href="ai_code_assistant.tools.html" />
     <link rel="prev" title="ai_code_assistant.gui.view.tool_settings package" href="ai_code_assistant.gui.view.tool_settings.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
 
   
@@ -44,20 +44,52 @@
 <dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.llm.interfaces.</span></span><span class="sig-name descname"><span class="pre">LlmConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm_provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'openai'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'amazon_bedrock'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ollama'</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ollama'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">llm_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'llama3.1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Configuration class for the Language Model (LLM).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.llm_provider">
+<span class="sig-name descname"><span class="pre">llm_provider</span></span><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.llm_provider" title="Link to this definition">¶</a></dt>
+<dd><p>The provider of the language model. Default is ‘ollama’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Literal[‘openai’, ‘amazon_bedrock’, ‘ollama’]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.llm_model">
-<span class="sig-name descname"><span class="pre">llm_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.llm_model" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">llm_model</span></span><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.llm_model" title="Link to this definition">¶</a></dt>
+<dd><p>The specific model of the language model. Default is ‘llama3.1’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">llm_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.llm_provider">
-<span class="sig-name descname"><span class="pre">llm_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'openai'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'amazon_bedrock'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ollama'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.llm_provider" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">llm_provider</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'openai'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'amazon_bedrock'</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="s"><span class="pre">'ollama'</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.load_from_file">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig"><span class="pre">LlmConfig</span></a></span></span><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.load_from_file" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Loads the LLM configuration from a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dir_path</strong> – The directory path where the configuration file is located.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The loaded LLM configuration.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.model_computed_fields">
@@ -82,7 +114,13 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.llm.interfaces.LlmConfig.save_to_file">
 <span class="sig-name descname"><span class="pre">save_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dir_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.llm.interfaces.LlmConfig.save_to_file" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Saves the LLM configuration to a JSON file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dir_path</strong> – The directory path where the configuration file will be saved.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -93,10 +131,23 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <dt class="sig sig-object py" id="ai_code_assistant.llm.llm.AiLlms">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.llm.llm.</span></span><span class="sig-name descname"><span class="pre">AiLlms</span></span><a class="headerlink" href="#ai_code_assistant.llm.llm.AiLlms" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class to create and manage different Language Learning Models (LLMs).</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.llm.llm.AiLlms.create_llm">
 <span class="sig-name descname"><span class="pre">create_llm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">llm_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig"><span class="pre">LlmConfig</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BaseChatModel</span></span></span><a class="headerlink" href="#ai_code_assistant.llm.llm.AiLlms.create_llm" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Creates an instance of a language model based on the provided configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>llm_config</strong> – The configuration for the language model.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of the language model.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>NotImplementedError</strong> – If the provided LLM provider is not supported.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -113,7 +164,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">ai-code-assistant</a></h1>
+<h1 class="logo"><a href="index.html">ai-code-assistant</a></h1>
 
 
 
@@ -125,7 +176,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 
 <search id="searchbox" style="display: none" role="search">
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
       <input type="submit" value="Go" />
     </form>
@@ -134,11 +185,11 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../HowToUse.html">How To Use</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftwareSpecification.html">Software Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Memo.html">Memo for development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareSpecification.html">Software Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ai_code_assistant.html">ai_code_assistant package</a></li>
 </ul>
@@ -148,7 +199,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">src</a><ul>
   <li><a href="ai_code_assistant.html">ai_code_assistant package</a><ul>
       <li>Previous: <a href="ai_code_assistant.gui.view.tool_settings.html" title="previous chapter">ai_code_assistant.gui.view.tool_settings package</a></li>
@@ -178,7 +229,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/api/ai_code_assistant.llm.rst.txt"
+      <a href="_sources/ai_code_assistant.llm.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

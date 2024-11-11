@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="../">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>ai_code_assistant.assistant package &#8212; ai-code-assistant  documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=686e5160" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
-    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="ai_code_assistant.cli package" href="ai_code_assistant.cli.html" />
     <link rel="prev" title="ai_code_assistant package" href="ai_code_assistant.html" />
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
 
   
@@ -44,30 +44,66 @@
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.assistant.assistant.</span></span><span class="sig-name descname"><span class="pre">AiAssistant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">agent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">CompiledGraph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiConfig" title="ai_code_assistant.assistant.interfaces.AiConfig"><span class="pre">AiConfig</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>AiAssistant is responsible for managing the interaction with the AI agent,
+including sending messages and handling responses.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant.ai_config">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ai_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiConfig" title="ai_code_assistant.assistant.interfaces.AiConfig"><span class="pre">AiConfig</span></a></em><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant.ai_config" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets the AI configuration settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The AI configuration settings.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant.ask_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ask_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">HumanMessage</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant.ask_async" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Asynchronously sends a message to the AI agent and yields the response.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>message</strong> – The message to send to the AI agent.</p>
+</dd>
+<dt class="field-even">Yields<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response from the AI agent.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant.clear_history">
 <span class="sig-name descname"><span class="pre">clear_history</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant.clear_history" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Clears the message history, retaining the current system message if it exists.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant.create_async">
 <em class="property"><span class="pre">async</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_config:</span> <span class="pre">~ai_code_assistant.assistant.interfaces.AiConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ai_llms:</span> <span class="pre">~ai_code_assistant.llm.llm.AiLlms</span> <span class="pre">=</span> <span class="pre">&lt;ai_code_assistant.llm.llm.AiLlms</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ai_code_assistant.assistant.assistant.AiAssistant" title="ai_code_assistant.assistant.assistant.AiAssistant"><span class="pre">AiAssistant</span></a></span></span><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant.create_async" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Asynchronously creates an instance of AiAssistant.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ai_config</strong> – Configuration settings for the AI assistant.</p></li>
+<li><p><strong>ai_llms</strong> – Instance of AiLlms for creating language models. Defaults to AiLlms().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An instance of AiAssistant.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.assistant.AiAssistant.system">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">system</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SystemMessage</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ai_code_assistant.assistant.assistant.AiAssistant.system" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets the current system message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current system message if it exists, otherwise None.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -78,9 +114,32 @@
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.assistant.interfaces.</span></span><span class="sig-name descname"><span class="pre">AiConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chat_llm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.llm.html#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig"><span class="pre">LlmConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">tools</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiTool" title="ai_code_assistant.assistant.interfaces.AiTool"><span class="pre">AiTool</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Configuration for the AI, including language model and tools.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiConfig.chat_llm">
-<span class="sig-name descname"><span class="pre">chat_llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ai_code_assistant.llm.html#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig"><span class="pre">LlmConfig</span></a></em><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiConfig.chat_llm" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">chat_llm</span></span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiConfig.chat_llm" title="Link to this definition">¶</a></dt>
+<dd><p>The configuration for the chat language model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="ai_code_assistant.llm.html#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig">ai_code_assistant.llm.interfaces.LlmConfig</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiConfig.tools">
+<span class="sig-name descname"><span class="pre">tools</span></span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiConfig.tools" title="Link to this definition">¶</a></dt>
+<dd><p>A list of AI tools with their settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiTool" title="ai_code_assistant.assistant.interfaces.AiTool">ai_code_assistant.assistant.interfaces.AiTool</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">chat_llm</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ai_code_assistant.llm.html#ai_code_assistant.llm.interfaces.LlmConfig" title="ai_code_assistant.llm.interfaces.LlmConfig"><span class="pre">LlmConfig</span></a></em><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -104,8 +163,8 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiConfig.tools">
-<span class="sig-name descname"><span class="pre">tools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiTool" title="ai_code_assistant.assistant.interfaces.AiTool"><span class="pre">AiTool</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiConfig.tools" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">tools</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#ai_code_assistant.assistant.interfaces.AiTool" title="ai_code_assistant.assistant.interfaces.AiTool"><span class="pre">AiTool</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -114,6 +173,29 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ai_code_assistant.assistant.interfaces.</span></span><span class="sig-name descname"><span class="pre">AiTool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BaseTool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tool_settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ai_code_assistant.tools.html#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Represents an AI tool with its settings.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool.tool">
+<span class="sig-name descname"><span class="pre">tool</span></span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool.tool" title="Link to this definition">¶</a></dt>
+<dd><p>The base tool used by the AI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>langchain_core.tools.base.BaseTool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool.tool_settings">
+<span class="sig-name descname"><span class="pre">tool_settings</span></span><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool.tool_settings" title="Link to this definition">¶</a></dt>
+<dd><p>The settings for the tool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="ai_code_assistant.tools.html#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings">ai_code_assistant.tools.interfaces.ToolSettings</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool.model_computed_fields">
 <span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ComputedFieldInfo</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool.model_computed_fields" title="Link to this definition">¶</a></dt>
@@ -135,13 +217,13 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool.tool">
-<span class="sig-name descname"><span class="pre">tool</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BaseTool</span></em><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool.tool" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">tool</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BaseTool</span></em><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="ai_code_assistant.assistant.interfaces.AiTool.tool_settings">
-<span class="sig-name descname"><span class="pre">tool_settings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ai_code_assistant.tools.html#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></em><a class="headerlink" href="#ai_code_assistant.assistant.interfaces.AiTool.tool_settings" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">tool_settings</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ai_code_assistant.tools.html#ai_code_assistant.tools.interfaces.ToolSettings" title="ai_code_assistant.tools.interfaces.ToolSettings"><span class="pre">ToolSettings</span></a></em><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -159,7 +241,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">ai-code-assistant</a></h1>
+<h1 class="logo"><a href="index.html">ai-code-assistant</a></h1>
 
 
 
@@ -171,7 +253,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 
 <search id="searchbox" style="display: none" role="search">
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
       <input type="submit" value="Go" />
     </form>
@@ -180,11 +262,11 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../HowToUse.html">How To Use</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Requirements.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../SoftwareSpecification.html">Software Specification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Design.html">Software Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Memo.html">Memo for development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HowToUse.html">How To Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SoftwareSpecification.html">Software Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Design.html">Software Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Memo.html">Memo for development</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="ai_code_assistant.html">ai_code_assistant package</a></li>
 </ul>
@@ -194,7 +276,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">src</a><ul>
   <li><a href="ai_code_assistant.html">ai_code_assistant package</a><ul>
       <li>Previous: <a href="ai_code_assistant.html" title="previous chapter">ai_code_assistant package</a></li>
@@ -224,7 +306,7 @@ mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] ob
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
       
       |
-      <a href="../_sources/api/ai_code_assistant.assistant.rst.txt"
+      <a href="_sources/ai_code_assistant.assistant.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

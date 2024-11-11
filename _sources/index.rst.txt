@@ -1,14 +1,12 @@
 .. ai-code-assistant documentation master file, created by
-   sphinx-quickstart on Sun Nov 10 16:16:00 2024.
+   sphinx-quickstart on Mon Nov 11 22:04:25 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 ai-code-assistant documentation
 ===============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Welcome to ai_code_assistant's documentation!
 
 
 .. toctree::
@@ -16,10 +14,8 @@ documentation for details.
    :caption: Contents:
 
    HowToUse.rst
-   Requirements.md
-   SoftwareSpecification.md
+   Requirements.rst
+   SoftwareSpecification.rst
    Design.rst
-   Memo.md
-   api/modules
-
-.. include:: ../README.rst
+   Memo.rst
+   modules.rst
